@@ -26,6 +26,8 @@ float dmg_values_mobs(MOBS* monster)
     if(roll > 90 &&  roll <= 100)pure_attackpower *= 1.1;
     printf("DAMAGE RECEIVE: %.2f\n",pure_attackpower);
     return pure_attackpower;
+    
+    //Didn't Add Mana/Stamina Attacks in Characters, And IDK Yet How Can I Make A Mob "Choose" a Random Ability
 
     /*if (attack_status == MANA_ATTACK)
     {
@@ -146,7 +148,7 @@ float dmg_calculation(CHARACTER* character,int attack_status)
     {
         break_rngloop();
         //If Player did Crit Damage with Ability Attack
-        float pure_abilitycritdmg = 1+(character-> base_abilitycritdmg/100);
+        float pure_abilitycritdmg = 1+(character-> base_abilitycritdmg/100);//Ability Attack Crit Damage
         printf("\nDID A ABILITY ATTACK!!!\n");
         printf("**CRIT DAMAGE**\n");
         printf("DAMAGE DONE : %.2f\n", pure_damage * pure_abilitycritdmg);
