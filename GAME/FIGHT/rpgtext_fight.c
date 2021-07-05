@@ -4,8 +4,6 @@
 #include "rpgtext_fight.h"
 #include <conio.h>
 
-//REMEMBER TO WRITE GCC RPGTEXT_RNG.O RPGTEXT_CALCULATION.C -O RPGTEXT_CALCULATION, REMEMBER TO USE THE OBJECT
-
 //-------------------------
 //Functions
 //-------------------------
