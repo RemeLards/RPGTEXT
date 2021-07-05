@@ -7,14 +7,14 @@
 
 //Character
 
-typedef struct level_character
+typedef struct level_character //Implemented
 {
     int character_level;
     float experience_tracker;  
 }CHAR_LEVEL;
 
 //Current Attributes {"Strenght","Constitution","Dexterity","Intelligence","Wisdom","Willpower","Perception","Charisma"}
-typedef struct backpack_character
+typedef struct backpack_character //Ideia of a backpack, Not implemented yet
 {
     int health_potion;
     int stamina_potion;
@@ -29,7 +29,7 @@ typedef struct backpack_character
     int weapon;
 }BACKPACK;
 
-typedef struct skillpoints_character
+typedef struct skillpoints_character //Implemented
 {
     int skillpoints;
     
@@ -44,7 +44,7 @@ typedef struct skillpoints_character
     int charisma;
 }SKILLPOINTS;
 
-typedef struct character_struct
+typedef struct character_struct //Implemented
 {
     char* character_name;
     float base_health;
@@ -69,7 +69,7 @@ typedef struct character_struct
 
 //Monsters
 
-typedef struct monster_struct
+typedef struct monster_struct //Implemented
 {
     
     float health;
