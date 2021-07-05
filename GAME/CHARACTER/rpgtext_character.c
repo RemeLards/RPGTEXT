@@ -416,7 +416,7 @@ void attributes(CHARACTER* character, int option, int key)
 void attributes_stats_calculation(CHARACTER* character)
 {
     //"CHARISMA" and "PERCEPTION" dont affect any stat yet
-    race_creation(character -> race, character);//Reseting base stats to add the attributes and Mallocing "race" char again
+    race_creation(character -> race, character);//Reseting base stats to add the attributes
     if(character -> characterclass == WARRIOR)
     {
         character -> base_attackpower +=  character -> skillpoints_struct -> strenght;
@@ -489,7 +489,7 @@ void attributes_stats_calculation(CHARACTER* character)
         character -> base_abilitypower+=  character -> skillpoints_struct -> wisdom;
         character -> base_abilitycritdmg +=  character -> skillpoints_struct -> willpower;
     }
-    character_basestats(character,character -> characterclass);//Multiply the final stats depending of the character class and Malloc "character_class" again
+    character_basestats(character,character -> characterclass);//Multiply the final stats depending of the character class
     character_stats_menu(character);//Returning to the "character_stats" menu
 }
 
