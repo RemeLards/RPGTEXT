@@ -21,7 +21,7 @@ int imenu()
     
     while(TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option, sizeofoptions,keyregistration()); 
         if(value >= NEW_GAME && value <= LEAVE) return option;
@@ -44,7 +44,7 @@ int character_creation_menu()
 
     while(TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option, sizeofoptions, keyregistration());
         if(value >= CHAR_CREATION && value <= RETURN_CHARACTER_CREATION_MENU) return option;
@@ -67,7 +67,7 @@ int race_selection_menu()
 
     while(TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
         menu_print(race_names,race,sizeofoptions);
         value = optionsregistration(&race,sizeofoptions,keyregistration());
         if(value >= HUMAN && value <= RETURN_RACES) return race;
@@ -90,7 +90,7 @@ int class_selection_menu()
 
     while(TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
         menu_print(class_names,class,sizeofoptions);
         value = optionsregistration(&class,sizeofoptions,keyregistration()); 
         if(value >= WARRIOR && value <= RETURN_CLASSES) return class;
@@ -113,7 +113,7 @@ int character_stats_menu()
 
     while(TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option,sizeofoptions,keyregistration());
         if(value >= CHARACTER_NAME && value <= RETURN_CHARACTER_STATS_MENU) return option;
@@ -135,7 +135,7 @@ char* character_name_creation()
     int character_registered = FALSE;
     while(character_registered != TRUE)
     {
-        system("cls"); //Updates UI
+        system("clear"); //Updates UI
 
         char Character_name[MAX_CHAR]; //Character Name
         printf("\nCharacter Name: ");
@@ -158,7 +158,7 @@ char* character_name_creation()
             char* options_names[] = {"No","Yes"}; // Options Names
             int sizeofoptions = sizeof(options_names)/ sizeof(char*);
 
-            system("cls");
+            system("clear");
             printf("Are you sure about your character name |%s| ?\n\n", Character_name_confirmed);
             menu_print(options_names,options_selection,sizeofoptions);
             int option = optionsregistration(&options_selection, sizeofoptions,keyregistration());

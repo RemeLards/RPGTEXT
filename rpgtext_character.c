@@ -540,7 +540,7 @@ void print_stats(CHARACTER* character, int race, int class)
 {
     char* RACES_STR[] = {"HUMAN", "ELF","GOBLIN","DWARF","TROLL","ORC","MINOTAUR","GNOME","RETURN_MENU"};
     char* CLASSES_STR[] = {"WARRIOR","PALADIN","ARCHER","ROGUE","PRIEST","MAGE","NECROMANCER","BERSERKER","RETURN_RACES"};
-    system("cls");
+    system("clear");
     printf("RACE: %s\n",RACES_STR[character->race]);
     printf("CLASS: %s\n",CLASSES_STR[character->class]);
     printf("BASE HEALTH: %.2f\n",character ->base_health);
