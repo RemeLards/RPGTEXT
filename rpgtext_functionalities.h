@@ -13,7 +13,6 @@
 #include "rpgtext_character.h"*/
 
 #include <stdio.h>
-#include <conio.h>
 #include "rpgtext_constants.h"
 
 //-------------------------

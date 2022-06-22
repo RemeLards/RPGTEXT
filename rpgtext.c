@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
             if(character == NULL) //If it couldn't malloc
             {
                 printf("\nNot Enough Memory for %d bytes, Press Any Key To Close The Program \n",sizeof(CHARACTER));
-                getch();
+                getchar();//fix getch() non existence
                 menu_pos = EXIT;
             }
             
@@ -151,7 +151,7 @@ int main(int argc, char* argv[])
                 printf("\n Not Enough Memory for %d bytes, Press Any Key To Close The Program \n",sizeof(CHAR_LEVEL));
                 free(character -> character_name);
                 free(character);
-                getch();
+                getchar();//fix getch() non existence
                 menu_pos = EXIT;
             }
             else init_level(character);
@@ -163,7 +163,7 @@ int main(int argc, char* argv[])
                 free(character -> character_name);
                 free(character -> character_level);
                 free(character);
-                getch();
+                getchar();//fix getch() non existence
                 menu_pos = EXIT;;
             }
             else init_skillpoints(character);
@@ -172,7 +172,7 @@ int main(int argc, char* argv[])
             printf("character level: %d\n", character -> character_level -> level);
             printf("character exp: %.2f\n", character -> character_level -> experience);
             printf("character strenght level: %d\n", character -> skillpoints_struct -> strenght);
-            getch();
+            getchar();//fix getch() non existence
             
             //game(character);
             //Add some options later

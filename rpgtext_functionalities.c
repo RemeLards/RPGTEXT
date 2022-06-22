@@ -14,15 +14,18 @@ int keyregistration()//Gets keyboard input
     int key = 0;    
     int c; //Just need 2 ints in the vector
     
-    c = getch();//Key input
+    //fix getch() non existence
+
+    c = getchar();//Key input
+    getchar(); //clears ENTER
     
-    if(c != 13)
+    if(c != 13 || c != 10)
     {
 
-        if(c == 119 || c == 87){key = UP;return key;}//Up Arrow Value
-        if(c == 115 || c == 83){key = DOWN;return key;} //Lower Arrow Value
-        if(c ==  97 || c == 65){key = LEFT;return key;} //Left Arrow Value
-        if(c == 100 || c == 68){key = RIGHT;return key;} //Right Arrow Value
+        if(c == 'W' || c == 'w'){key = UP;return key;}//Up Arrow Value
+        if(c == 'S' || c == 's'){key = DOWN;return key;} //Lower Arrow Value
+        if(c == 'A' || c == 'a'){key = LEFT;return key;} //Left Arrow Value
+        if(c == 'D' || c == 'd'){key = RIGHT;return key;} //Right Arrow Value
     }
     else
     {

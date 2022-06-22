@@ -521,8 +521,9 @@ void level_calculation(CHARACTER* character)
         printf("\nCONGRATS YOU LEVELED UP, NOW YOU ARE LEVEL %d\n",character -> character_level -> level);
     }
     printf("\nYOU HAVE %.0f EXPERIENCE, AND YOU NEED %.0f EXPERIENCE FOR THE NEXT LEVEL",character -> character_level -> experience,exp_to_nextlevel_calculation(character) - character -> character_level -> experience);
-    printf("\nPress Any Key To Continue\n");
-    getch();
+    printf("\nPRESS ENTER TO RETURN\n");
+    
+    getchar(); //fix getch() non existence
 }
 
 
@@ -551,11 +552,11 @@ void print_stats(CHARACTER* character, int race, int class)
     printf("BASE CRIT DAMAGE: %.2f\n",character ->base_attackcritdmg);
     printf("BASE ABILITY POWER: %.2f\n",character ->base_abilitypower);
     printf("BASE ABILITY CRIT CHANCE: %.2f\n",character ->base_abilitycritchance);
-    printf("BASE ABILITY CRIT DMG: %.2f\n\n",character ->base_abilitycritdmg);
+    printf("BASE ABILITY CRIT DMG: %.2f\n",character ->base_abilitycritdmg);
 
-    printf("PRESS ANY KEY TO RETURN");
+    printf("\nPRESS ENTER TO RETURN\n");
 
-    getch();
+    getchar(); //fix getch() non existence
 }
 
                                         // CHARACER ATTRIBUTES //

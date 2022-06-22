@@ -27,8 +27,8 @@ int imenu()
         if(value >= NEW_GAME && value <= LEAVE) return option;
     }
     
-    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
-    getch();
+    printf("\nUnexpected Error, Press Enter To Close The Program\n");
+    getchar();//fix getch() non existence
 
     return UNEXPECTED_ERROR;
 }
@@ -50,8 +50,8 @@ int character_creation_menu()
         if(value >= CHAR_CREATION && value <= RETURN_CHARACTER_CREATION_MENU) return option;
     }
 
-    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
-    getch();
+    printf("\nUnexpected Error, Press Enter To Close The Program\n");
+    getchar();//fix getch() non existence
 
     return UNEXPECTED_ERROR;   
 }
@@ -73,8 +73,8 @@ int race_selection_menu()
         if(value >= HUMAN && value <= RETURN_RACES) return race;
     }
     
-    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
-    getch();
+    printf("\nUnexpected Error, Press Enter To Close The Program\n");
+    getchar();//fix getch() non existence
     
     return UNEXPECTED_ERROR;
 }
@@ -96,8 +96,8 @@ int class_selection_menu()
         if(value >= WARRIOR && value <= RETURN_CLASSES) return class;
     }
 
-    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
-    getch(); 
+    printf("\nUnexpected Error, Press Enter To Close The Program\n");
+    getchar();//fix getch() non existence
 
     return UNEXPECTED_ERROR;    
 }
@@ -119,8 +119,8 @@ int character_stats_menu()
         if(value >= CHARACTER_NAME && value <= RETURN_CHARACTER_STATS_MENU) return option;
     }
 
-    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
-    getch();
+    printf("\nUnexpected Error, Press Enter To Close The Program\n");
+    getchar();//fix getch() non existence
 
     return UNEXPECTED_ERROR;
 }
@@ -148,7 +148,7 @@ char* character_name_creation()
         if ( Character_name_confirmed == NULL)
         {
             printf("\n Not Enough Memory for the Character Name, Press Any Key To Close The Program \n");
-            getch();
+            getchar();//fix getch() non existence
             return Character_name_confirmed;
         }
 
