@@ -21,14 +21,14 @@ int imenu()
     
     while(TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option, sizeofoptions,keyregistration()); 
         if(value >= NEW_GAME && value <= LEAVE) return option;
     }
     
-    printf("\nUnexpected Error, Press Enter To Close The Program\n");
-    getchar();//fix getch() non existence
+    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
+    getch();
 
     return UNEXPECTED_ERROR;
 }
@@ -44,14 +44,14 @@ int character_creation_menu()
 
     while(TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option, sizeofoptions, keyregistration());
         if(value >= CHAR_CREATION && value <= RETURN_CHARACTER_CREATION_MENU) return option;
     }
 
-    printf("\nUnexpected Error, Press Enter To Close The Program\n");
-    getchar();//fix getch() non existence
+    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
+    getch();
 
     return UNEXPECTED_ERROR;   
 }
@@ -67,14 +67,14 @@ int race_selection_menu()
 
     while(TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
         menu_print(race_names,race,sizeofoptions);
         value = optionsregistration(&race,sizeofoptions,keyregistration());
         if(value >= HUMAN && value <= RETURN_RACES) return race;
     }
     
-    printf("\nUnexpected Error, Press Enter To Close The Program\n");
-    getchar();//fix getch() non existence
+    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
+    getch();
     
     return UNEXPECTED_ERROR;
 }
@@ -90,14 +90,14 @@ int class_selection_menu()
 
     while(TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
         menu_print(class_names,class,sizeofoptions);
         value = optionsregistration(&class,sizeofoptions,keyregistration()); 
         if(value >= WARRIOR && value <= RETURN_CLASSES) return class;
     }
 
-    printf("\nUnexpected Error, Press Enter To Close The Program\n");
-    getchar();//fix getch() non existence
+    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
+    getch(); 
 
     return UNEXPECTED_ERROR;    
 }
@@ -113,14 +113,14 @@ int character_stats_menu()
 
     while(TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
         menu_print(options_names,option,sizeofoptions);
         value = optionsregistration(&option,sizeofoptions,keyregistration());
         if(value >= CHARACTER_NAME && value <= RETURN_CHARACTER_STATS_MENU) return option;
     }
 
-    printf("\nUnexpected Error, Press Enter To Close The Program\n");
-    getchar();//fix getch() non existence
+    printf("\nUnexpected Error, Press Any Key To Close The Program\n");
+    getch();
 
     return UNEXPECTED_ERROR;
 }
@@ -135,7 +135,7 @@ char* character_name_creation()
     int character_registered = FALSE;
     while(character_registered != TRUE)
     {
-        system("clear"); //Updates UI
+        system("cls"); //Updates UI
 
         char Character_name[MAX_CHAR]; //Character Name
         printf("\nCharacter Name: ");
@@ -148,7 +148,7 @@ char* character_name_creation()
         if ( Character_name_confirmed == NULL)
         {
             printf("\n Not Enough Memory for the Character Name, Press Any Key To Close The Program \n");
-            getchar();//fix getch() non existence
+            getch();
             return Character_name_confirmed;
         }
 
@@ -158,7 +158,7 @@ char* character_name_creation()
             char* options_names[] = {"No","Yes"}; // Options Names
             int sizeofoptions = sizeof(options_names)/ sizeof(char*);
 
-            system("clear");
+            system("cls");
             printf("Are you sure about your character name |%s| ?\n\n", Character_name_confirmed);
             menu_print(options_names,options_selection,sizeofoptions);
             int option = optionsregistration(&options_selection, sizeofoptions,keyregistration());

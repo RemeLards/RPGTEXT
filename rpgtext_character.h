@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "rpgtext_constants.h"
 #include "rpgtext_structs.h"
 

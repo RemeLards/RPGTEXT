@@ -22,8 +22,8 @@ void glasscanon_goblin(CHARACTER* character)
 {
     system("cls");
     printf("\nYOU FOUND A GLASS GOLBIN!!!\n");
-    printf("PRESS ENTER TO CONTINUE\n");
-    getchar(); //fix getch() non existence
+    printf("Press any key to continue");
+    getch();
 
     MOBS* glasscanon_goblin = (MOBS*)malloc(sizeof(MOBS));
     glasscanon_goblin -> health = 1;
