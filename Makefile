@@ -22,4 +22,4 @@ rpgtext.o: rpgtext.c rpgtext_menu.h rpgtext_rng.h
 	gcc -c rpgtext.c 
 
 clean:
-	del *.o rpgtext.exe
+	del *.o rpgtext.exe rpgdmg_rng.txt
