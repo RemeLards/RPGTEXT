@@ -38,19 +38,6 @@ void search_mobs(CHARACTER* character)
     }
 }
 
-//Game Interactions
-void fight_menu(CHARACTER* character,MOBS* monster)
-{
-    int options_selection = 0; //Goes from 0 to 8
-    char* options_names[] = {"Basic Attack","Mana Abilities","Stamina Abilties"};
-    int sizeofoptions = (sizeof(options_names)/4);
-    while(1)
-    {
-        system("cls");
-        menu_print(options_names,options_selection,sizeofoptions);
-        fight_menu_optionsregistration(&options_selection,sizeofoptions,character,monster,keyregistration());
-    }     
-}
 void fight(CHARACTER* character,MOBS* monster,int attack_status)
 {
     if(attack_status == BASIC_ATTACK)
