@@ -5,6 +5,7 @@
 #include "character_skillpoints.h"
 #include "character_backpack.h"
 #include "character_level.h"
+#include "character_map_position.h"
 
 
 typedef struct character_struct //Implemented
@@ -28,7 +29,8 @@ typedef struct character_struct //Implemented
     SKILLPOINTS *skillpoints_struct_ptr;
     BACKPACK *backpack_struct_ptr;
     LEVEL *level_struct_ptr;
-
+    CHAR_POSITION *character_position_struct_ptr;
+    
 }CHARACTER;
 
 #endif

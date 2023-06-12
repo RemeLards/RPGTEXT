@@ -601,10 +601,11 @@ Explanation : Initializes all character variables using all other " character_in
 void
 character_init_all(CHARACTER *character_struct_ptr)
 {
-    character_init(character_struct_ptr);
+    character_init_character(character_struct_ptr);
     character_init_level(character_struct_ptr);
     character_init_skillpoints(character_struct_ptr);
     //character_init_backpack(character);
+    character_init_character_position(character_struct_ptr);
 }
 
 /************************************
@@ -621,6 +622,7 @@ character_malloc_all()
     character_struct_ptr -> level_struct_ptr = (LEVEL *) malloc (sizeof(LEVEL));
     character_struct_ptr -> skillpoints_struct_ptr = (SKILLPOINTS *) malloc (sizeof(SKILLPOINTS));
     //character_struct_ptr -> backpack_struct = (BACKPACK *) malloc (sizeof(BACKPACK));
+    character_struct_ptr -> character_position_struct_ptr = (CHAR_POSITION *) malloc (sizeof(CHAR_POSITION));
     
     return character_struct_ptr;
 }
@@ -638,11 +640,12 @@ character_free_all(CHARACTER *character_struct_ptr)
     free(character_struct_ptr -> level_struct_ptr); 
     free(character_struct_ptr -> skillpoints_struct_ptr);
     //free(character_struct_ptr -> backpack_struct);
+    free(character_struct_ptr -> character_position_struct_ptr);
     free(character_struct_ptr);
 }
 
 void
-character_init(CHARACTER *character_struct_ptr)
+character_init_character(CHARACTER *character_struct_ptr)
 {
     character_struct_ptr -> character_name = NULL;
     character_struct_ptr -> base_health = 0.0;
@@ -659,6 +662,13 @@ character_init(CHARACTER *character_struct_ptr)
     character_struct_ptr -> ability_type = NONE_ABILITY_TYPE;
     character_struct_ptr -> race = NONE_RACE;
     character_struct_ptr -> class = NONE_CLASS;
+
 }
 
+void
+character_init_character_position(CHARACTER *character_struct_ptr)
+{
+    character_struct_ptr -> character_position_struct_ptr -> x_position = 0;
+    character_struct_ptr -> character_position_struct_ptr -> y_position = 0;
+}
                                       

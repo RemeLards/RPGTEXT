@@ -60,7 +60,10 @@ void
 character_free_all(CHARACTER *character_struct_ptr);
 
 void
-character_init(CHARACTER *character_struct_ptr);
+character_init_character(CHARACTER *character_struct_ptr);
+
+void
+character_init_character_position(CHARACTER *character_struct_ptr);
 
 
 #endif

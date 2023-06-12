@@ -1,6 +1,7 @@
 #ifndef _CHARACTER_BACKPACK_STRUCT_HEADER_
 
 #define _CHARACTER_BACKPACK_STRUCT_HEADER_
+
 typedef struct character_backpack //Not implemented
 {
     int health_potion;
