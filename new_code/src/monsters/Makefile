@@ -1,8 +1,9 @@
 CC = gcc
 
 MONSTERS_HEADERS_PATH = ../../include/monsters
+MAP_HEADERS_PATH = ../../include/map
 
-IFLAGS = -I$(MONSTERS_HEADERS_PATH)
+IFLAGS = -I$(MONSTERS_HEADERS_PATH) -I$(MAP_HEADERS_PATH)
 
 CFLAGS = -pedantic -Wall -Wextra -Wwrite-strings -g3
 

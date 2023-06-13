@@ -2,6 +2,8 @@
 
 #define _MONSTERS_MONSTERS_STRUCT_HEADER_
 
+#include "map_position.h"
+
 typedef struct monsters_struct
 {
     float health;
@@ -12,6 +14,8 @@ typedef struct monsters_struct
     float ability_power;
     float experience_given;
     int monster_type;
+    MAP_POSITION *monster_map_position_struct_ptr;
+
 }MONSTER;
 
 #endif

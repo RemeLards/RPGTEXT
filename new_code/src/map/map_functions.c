@@ -1,12 +1,12 @@
 #include "map_functions.h"
 
 void
-map_print_map(CHARACTER *character_struct_ptr/*, MAP *map_ptr*/)
+map_print_map(CHARACTER *character_struct_ptr)
 {
-    int char_x_pos = character_struct_ptr -> character_position_struct_ptr -> x_position;
-    int char_y_pos = character_struct_ptr -> character_position_struct_ptr -> y_position;
+    int char_x_pos = character_struct_ptr -> character_map_position_struct_ptr -> x_position;
+    int char_y_pos = character_struct_ptr -> character_map_position_struct_ptr -> y_position;
 
-    for(int map_top_lim = 0; map_top_lim < MAP_SIZE * 1.6 ; map_top_lim++)printf(" -");
+    for(int map_top_lim = 0; map_top_lim < MAP_SIZE * MAP_HYPHEN_SCALE; map_top_lim++)printf(" -");
     printf("\n");
 
     for(int map_y_axis = 0; map_y_axis < MAP_SIZE; map_y_axis++)
@@ -20,7 +20,7 @@ map_print_map(CHARACTER *character_struct_ptr/*, MAP *map_ptr*/)
         printf(" |\n");
     }
 
-    for(int map_floor_lim = 0; map_floor_lim < MAP_SIZE * 1.6 ; map_floor_lim++)printf(" -");
+    for(int map_bottom_lim = 0; map_bottom_lim < MAP_SIZE * MAP_HYPHEN_SCALE ; map_bottom_lim++)printf(" -");
     printf("\n");
 
 }
@@ -29,10 +29,10 @@ int
 map_character_update_position(CHARACTER *character_struct_ptr)
 {
     int key = keyboard_key_registrations();
-    if( key == UP ) character_struct_ptr -> character_position_struct_ptr -> y_position--;
-    if( key == DOWN ) character_struct_ptr -> character_position_struct_ptr -> y_position++;
-    if( key == RIGHT ) character_struct_ptr -> character_position_struct_ptr -> x_position++;
-    if( key == LEFT ) character_struct_ptr -> character_position_struct_ptr -> x_position--;
+    if( key == UP ) character_struct_ptr -> character_map_position_struct_ptr -> y_position--;
+    if( key == DOWN ) character_struct_ptr -> character_map_position_struct_ptr -> y_position++;
+    if( key == RIGHT ) character_struct_ptr -> character_map_position_struct_ptr -> x_position++;
+    if( key == LEFT ) character_struct_ptr -> character_map_position_struct_ptr -> x_position--;
 
     return key; // If I want to leave some test
 }
@@ -40,17 +40,24 @@ map_character_update_position(CHARACTER *character_struct_ptr)
 void
 map_character_position_validation(CHARACTER *character_struct_ptr)
 {
-    int char_x_pos = character_struct_ptr -> character_position_struct_ptr -> x_position;
-    int char_y_pos = character_struct_ptr -> character_position_struct_ptr -> y_position;
+    int char_x_pos = character_struct_ptr -> character_map_position_struct_ptr -> x_position;
+    int char_y_pos = character_struct_ptr -> character_map_position_struct_ptr -> y_position;
 
-    if ( char_y_pos > MAP_SIZE-1) character_struct_ptr -> character_position_struct_ptr -> y_position --;
-    if ( char_y_pos < 0 ) character_struct_ptr -> character_position_struct_ptr -> y_position ++;
-    if ( char_x_pos > MAP_SIZE-1) character_struct_ptr -> character_position_struct_ptr -> x_position --;
-    if ( char_x_pos < 0 ) character_struct_ptr -> character_position_struct_ptr -> x_position ++;
+    if ( char_y_pos > MAP_SIZE-1) character_struct_ptr -> character_map_position_struct_ptr -> y_position --;
+    if ( char_y_pos < 0 ) character_struct_ptr -> character_map_position_struct_ptr -> y_position ++;
+    if ( char_x_pos > MAP_SIZE-1) character_struct_ptr -> character_map_position_struct_ptr -> x_position --;
+    if ( char_x_pos < 0 ) character_struct_ptr -> character_map_position_struct_ptr -> x_position ++;
     
 }
 
-int map_map_menu(CHARACTER *character_struct_ptr /*, MAP *map_ptr*/)
+void
+map_monster_spawn(MONSTER *monster_struct_ptr, MAP *map_ptr)
+{
+
+}
+
+int 
+map_map_menu(CHARACTER *character_struct_ptr )//, MAP *map_ptr)
 {
     map_print_map(character_struct_ptr);
     int key = map_character_update_position(character_struct_ptr);

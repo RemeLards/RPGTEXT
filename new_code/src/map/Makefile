@@ -4,8 +4,10 @@ CHARACTER_HEADERS_PATH = ../../include/character
 MAP_HEADERS_PATH = ../../include/map
 KEYBOARD_HEADERS_PATH = ../../include/keyboard
 SYSTEM_HEADERS_PATH = ../../include/system
+MONSTER_HEADERS_PATH = ../../include/monsters
 
 IFLAGS = -I$(CHARACTER_HEADERS_PATH) -I$(MAP_HEADERS_PATH) -I$(KEYBOARD_HEADERS_PATH) -I$(SYSTEM_HEADERS_PATH)\
+-I$(MONSTER_HEADERS_PATH)
 
 
 CFLAGS = -pedantic -Wall -Wextra -Wwrite-strings -g3

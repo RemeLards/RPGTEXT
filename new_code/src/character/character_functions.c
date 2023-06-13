@@ -622,7 +622,7 @@ character_malloc_all()
     character_struct_ptr -> level_struct_ptr = (LEVEL *) malloc (sizeof(LEVEL));
     character_struct_ptr -> skillpoints_struct_ptr = (SKILLPOINTS *) malloc (sizeof(SKILLPOINTS));
     //character_struct_ptr -> backpack_struct = (BACKPACK *) malloc (sizeof(BACKPACK));
-    character_struct_ptr -> character_position_struct_ptr = (CHAR_POSITION *) malloc (sizeof(CHAR_POSITION));
+    character_struct_ptr -> character_map_position_struct_ptr = (MAP_POSITION *) malloc (sizeof(MAP_POSITION));
     
     return character_struct_ptr;
 }
@@ -640,7 +640,7 @@ character_free_all(CHARACTER *character_struct_ptr)
     free(character_struct_ptr -> level_struct_ptr); 
     free(character_struct_ptr -> skillpoints_struct_ptr);
     //free(character_struct_ptr -> backpack_struct);
-    free(character_struct_ptr -> character_position_struct_ptr);
+    free(character_struct_ptr -> character_map_position_struct_ptr);
     free(character_struct_ptr);
 }
 
@@ -668,7 +668,7 @@ character_init_character(CHARACTER *character_struct_ptr)
 void
 character_init_character_position(CHARACTER *character_struct_ptr)
 {
-    character_struct_ptr -> character_position_struct_ptr -> x_position = 0;
-    character_struct_ptr -> character_position_struct_ptr -> y_position = 0;
+    character_struct_ptr -> character_map_position_struct_ptr -> x_position = 0;
+    character_struct_ptr -> character_map_position_struct_ptr -> y_position = 0;
 }
                                       

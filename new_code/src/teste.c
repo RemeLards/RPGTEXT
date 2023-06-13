@@ -8,10 +8,10 @@ int
 main(/*int agrc, char *argv[]*/)
 {
     CHARACTER *personagem_ptr = (CHARACTER *) malloc (sizeof(CHARACTER));
-    personagem_ptr -> character_position_struct_ptr = (CHAR_POSITION *) malloc (sizeof(CHAR_POSITION));
+    personagem_ptr -> character_map_position_struct_ptr = (MAP_POSITION *) malloc (sizeof(MAP_POSITION));
 
-    personagem_ptr -> character_position_struct_ptr -> x_position = MAP_SIZE/2;
-    personagem_ptr -> character_position_struct_ptr -> y_position = MAP_SIZE/2;
+    personagem_ptr -> character_map_position_struct_ptr -> x_position = MAP_SIZE/2;
+    personagem_ptr -> character_map_position_struct_ptr -> y_position = MAP_SIZE/2;
 
     int key = 0;
     system_clear();
@@ -29,7 +29,7 @@ main(/*int agrc, char *argv[]*/)
         character_free_all ( personagem_ptr );
     }*/
     
-    free(personagem_ptr -> character_position_struct_ptr);
+    free(personagem_ptr -> character_map_position_struct_ptr);
     free(personagem_ptr);
 
     return 0; 

@@ -3,5 +3,6 @@
 #define _MAP_CONSTANTS_HEADER_
 
 #define MAP_SIZE 10
+#define MAP_HYPHEN_SCALE 1.6
 
 #endif
