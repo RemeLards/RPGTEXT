@@ -17,7 +17,7 @@ main(/*int agrc, char *argv[]*/)
     system_clear();
     while (key != 'Q' && key != 'q')
     {
-        key = map_map_menu(personagem_ptr);
+        key = map_map_menu(personagem_ptr,);
     }
     
     /*personagem_ptr = main_menu();

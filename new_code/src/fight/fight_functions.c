@@ -17,7 +17,7 @@ float
 fight_monsters_base_dmg_calculation(MONSTER *monster_struct_ptr)
 {
     printf("\nTHE MONSTER HITTED YOU!!!\n");
-    int roll = rng_generate_random_number() % 101;
+    int roll = rng_generate_random_positive_number() % 101;
     float monster_base_physical_power = monster_struct_ptr -> physical_power;
 
     if (roll <= 10) monster_base_physical_power *= 0.9;
@@ -67,7 +67,7 @@ fight_monsters_base_dmg_calculation(MONSTER *monster_struct_ptr)
 float
 fight_character_base_dmg_calculation(CHARACTER *character_struct_ptr)
 {
-    int roll = rng_generate_random_number() % 101;
+    int roll = rng_generate_random_positive_number() % 101;
 
     if (character_struct_ptr -> attack_type == PHYSICAL_ATTACK)
     {
@@ -130,7 +130,7 @@ fight_character_base_dmg_calculation(CHARACTER *character_struct_ptr)
 float
 fight_character_overall_dmg_calculation(CHARACTER *character_struct_ptr)
 {
-    int roll = rng_generate_random_number() % 101;//Random Number
+    int roll = rng_generate_random_positive_number() % 101;//Random Number
     int physical_crit_chance = (character_struct_ptr -> base_physical_crit_chance); //Chance of getting a basic physical crit
     int ability_crit_chance = (character_struct_ptr -> base_ability_crit_chance); //Chance of getting a ability crit
     float character_base_damage = fight_character_base_dmg_calculation(character_struct_ptr); //Getting a range of damage values

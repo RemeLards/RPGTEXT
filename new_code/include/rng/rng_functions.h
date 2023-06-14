@@ -14,8 +14,10 @@ void rng_check_seed_file(); //Checking if "seed.txt" exist
 void rng_save_seed(int seed);
 
 //RNG 
-int rng_generate_random_number(); //Xorshift algorithm, random number generator
 
+int rng_generate_random_number(); //Xorshift algorithm, random number generator
 void rng_extend_random_number_group();
+int rng_generate_random_positive_number();
+int rng_generate_random_sign();
 
 #endif

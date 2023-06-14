@@ -20,6 +20,9 @@ monsters_goblin(int goblin_type)
 {
     MONSTER *goblin_monster_ptr = (MONSTER *)malloc(sizeof(MONSTER));
 
+    //CHANGE THIS AFTER TEST
+    goblin_monster_ptr -> monster_map_position_struct_ptr = (MAP_POSITION *) malloc(sizeof(MAP_POSITION));
+
     if (goblin_type == NORMAL_GOBLIN)
     {  
         /*
@@ -59,6 +62,31 @@ monsters_goblin(int goblin_type)
     }
     
     return goblin_monster_ptr;
+}
+
+void
+monsters_malloc_next_monster_linked_list(MONSTER_LINKED_LIST *monster_linked_list_head_ptr, MONSTER *monster_struct_ptr)
+{
+    MONSTER_LINKED_LIST *monster_linked_list_last_monster_ptr;
+
+    if ( monster_linked_list_head_ptr -> monster_struct_ptr != NULL)
+    {
+        for(monster_linked_list_last_monster_ptr = monster_linked_list_head_ptr; monster_linked_list_head_ptr -> next_monster  != NULL ;
+        monster_linked_list_last_monster_ptr = monster_linked_list_last_monster_ptr -> next_monster);
+
+        monster_linked_list_last_monster_ptr -> next_monster = (MONSTER_LINKED_LIST *) malloc (sizeof(MONSTER_LINKED_LIST));
+        monsters_init_monster_linked_list(monster_linked_list_head_ptr); 
+        monster_linked_list_last_monster_ptr -> next_monster -> monster_struct_ptr = monster_struct_ptr;
+    }
+
+    else monster_linked_list_head_ptr -> monster_struct_ptr = monster_struct_ptr;
+}
+
+void
+monsters_init_monster_linked_list(MONSTER_LINKED_LIST *monster_linked_list_head_ptr)
+{
+    monster_linked_list_head_ptr -> monster_struct_ptr = NULL;
+    monster_linked_list_head_ptr -> next_monster = NULL; 
 }
 
 

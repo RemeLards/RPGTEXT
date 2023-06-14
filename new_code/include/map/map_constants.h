@@ -4,5 +4,12 @@
 
 #define MAP_SIZE 10
 #define MAP_HYPHEN_SCALE 1.6
+#define MAX_MONSTER_WALKABLE_DISTANCE_AT_ONCE 2
+
+enum MAP_LEVELS
+{
+    TUTORIAL_LEVEL = 0,
+    FOREST_LEVEL,
+};
 
 #endif

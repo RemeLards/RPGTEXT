@@ -15,6 +15,7 @@ Date : 5/24/2023
 Usable? : Yes
 Explanation : gets a number from "rng.txt" to use as a Pseudo Random Number Generator "seed".
 *************************************/
+
 int
 rng_get_seed()//Getting the seed from .txt
 {
@@ -33,6 +34,7 @@ Date : 5/24/2023
 Usable? : Yes
 Explanation : checks if "rng.txt" exists, if it doesn't, this function puts a default "seed".
 *************************************/
+
 void
 rng_check_seed_file()//Checking if "seed.txt" exist
 {
@@ -57,6 +59,7 @@ Date : 5/24/2023
 Usable? : Yes
 Explanation : save the "seed" number in a file called "rng.txt"
 *************************************/
+
 void
 rng_save_seed(int seed)//Savind the seed in .txt
 {
@@ -72,15 +75,14 @@ Date : 5/24/2023
 Usable? : Yes
 Explanation : This is an algorithm to generate a Random Number Generator (need to see how it works later) 
 *************************************/
-//RNG 
+
 int
 rng_generate_random_number()//Xorshift algorithm
 {
     int n = rng_get_seed(); // "Seed"
 	n ^= n << 13; // << shifts bits to the left "x << y" = x * (2^y)
 	n ^= n >> 17; // >> shifts bits to the right "x >> y" = x / (2^y)
-	n ^= n << 5; //
-    if(n < 0) n = n*-1; 
+	n ^= n << 5; // 
     rng_save_seed(n);
 	return n;
 }
@@ -92,10 +94,28 @@ Usable? : Yes
 Explanation : After a Big quantity of numbers, a number can create the start "seed" number again, so we get stuck in a loop.
 This loop can be small or big, this functions tries to get this loop as big as possible (need to see if it works)
 *************************************/
+
 void
 rng_extend_random_number_group()
 {
     int seed = rng_get_seed(); 
     seed += 2;
     rng_save_seed(seed);
+}
+
+
+int rng_generate_random_positive_number()
+{
+    int n = rng_generate_random_number();
+    if ( n < 0 ) n*= -1;
+    return n;
+}
+
+
+int rng_generate_random_sign()
+{
+    int sign = 1;
+    int n = rng_generate_random_number();
+    if(n < 0) sign = -1; 
+    return sign;
 }
