@@ -65,28 +65,21 @@ monsters_goblin(int goblin_type)
 }
 
 void
-monsters_malloc_next_monster_linked_list(MONSTER_LINKED_LIST *monster_linked_list_head_ptr, MONSTER *monster_struct_ptr)
+monsters_malloc_next_monster_single_linked_list(SLL_STRUCT *monster_single_linked_list_head_ptr, MONSTER *monster_struct_ptr)
 {
-    MONSTER_LINKED_LIST *monster_linked_list_last_monster_ptr;
-
-    if ( monster_linked_list_head_ptr -> monster_struct_ptr != NULL)
+    if ( monster_single_linked_list_head_ptr -> data_ptr != NULL)
     {
-        for(monster_linked_list_last_monster_ptr = monster_linked_list_head_ptr; monster_linked_list_head_ptr -> next_monster  != NULL ;
-        monster_linked_list_last_monster_ptr = monster_linked_list_last_monster_ptr -> next_monster);
-
-        monster_linked_list_last_monster_ptr -> next_monster = (MONSTER_LINKED_LIST *) malloc (sizeof(MONSTER_LINKED_LIST));
-        monsters_init_monster_linked_list(monster_linked_list_head_ptr); 
-        monster_linked_list_last_monster_ptr -> next_monster -> monster_struct_ptr = monster_struct_ptr;
+        SLL_STRUCT *monster_sll_tail = sll_get_tail_sll_ptr(monster_single_linked_list_head_ptr);
+        
+        monster_sll_tail -> next_sll_struct = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
+        
+        sll_initialize( monster_sll_tail -> next_sll_struct ); 
+        
+        monster_sll_tail -> next_sll_struct -> data_ptr = (void *) monster_struct_ptr;
     }
 
-    else monster_linked_list_head_ptr -> monster_struct_ptr = monster_struct_ptr;
+    else monster_single_linked_list_head_ptr -> data_ptr =  (void *) monster_struct_ptr;
 }
 
-void
-monsters_init_monster_linked_list(MONSTER_LINKED_LIST *monster_linked_list_head_ptr)
-{
-    monster_linked_list_head_ptr -> monster_struct_ptr = NULL;
-    monster_linked_list_head_ptr -> next_monster = NULL; 
-}
 
 

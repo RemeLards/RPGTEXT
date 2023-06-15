@@ -4,7 +4,7 @@
 
 #include "map_position.h"
 
-typedef struct monsters_struct
+typedef struct monster_struct
 {
     float health;
     float defense;
