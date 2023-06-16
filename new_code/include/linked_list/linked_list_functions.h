@@ -14,7 +14,7 @@ sll_get_next_sll_ptr(SLL_STRUCT* sll);
 void*
 sll_get_tail_sll_ptr(SLL_STRUCT* sll);
 
-void*
+void
 sll_initialize(SLL_STRUCT* sll);
 
 #endif

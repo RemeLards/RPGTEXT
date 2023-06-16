@@ -5,7 +5,7 @@
 typedef struct single_linked_list_struct
 {
     void *data_ptr;
-    SLL_STRUCT *next_sll_struct;
+    struct single_linked_list_struct *next_sll_struct;
 
 }SLL_STRUCT;
 

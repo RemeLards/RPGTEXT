@@ -12,7 +12,7 @@ sll_get_next_sll_ptr(SLL_STRUCT* sll)
     return sll -> next_sll_struct;
 }
 
-void*
+void
 sll_initialize(SLL_STRUCT* sll)
 {
     sll -> data_ptr = NULL;
@@ -26,3 +26,8 @@ sll_get_tail_sll_ptr(SLL_STRUCT* sll)
     for(sll_copy = sll; sll_get_next_sll_ptr(sll_copy) != NULL; sll_copy = sll_get_next_sll_ptr(sll_copy));
     return sll_copy;
 }
+
+//sll_free_all_sll(SLL_STRUCT* sll)
+//{
+
+//}

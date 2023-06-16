@@ -14,7 +14,19 @@
 #include "rng_functions.h"
 
 void
-map_print_map(CHARACTER *character_struct_ptr, SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
+map_map_init(MAP *map_ptr);
+
+void
+map_add_character_to_map( CHARACTER *character_struct_ptr, MAP *map_ptr );
+
+void
+map_add_monsters_to_map( SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr );
+
+void
+map_add_entities_to_map(CHARACTER *character_struct_ptr,SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
+
+void
+map_print_map(MAP *map_ptr);
 
 void
 map_print_map_lim();
@@ -26,13 +38,13 @@ void
 map_character_position_map_limit_validation(CHARACTER *character_struct_ptr);
 
 int
-map_monster_position_monster_collision_validation( SLL_STRUCT *monster_single_linked_list_head_ptr, MONSTER* monster_struct_ptr, CHARACTER* character_struct_ptr);
+map_monster_position_monster_collision_validation(MONSTER* monster_struct_ptr, MAP* map_ptr);
 
 void
-map_monster_spawn( SLL_STRUCT *monster_single_linked_list_head_ptr, CHARACTER* character_struct_ptr, MAP *map_ptr);
+map_monster_spawn( SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
 
 void
-map_monsters_update_position( SLL_STRUCT *monster_single_linked_list_head_ptr,  CHARACTER* character_struct_ptr);
+map_monsters_update_position( SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
 
 void
 map_monsters_position_map_limit_validation( SLL_STRUCT *monster_single_linked_list_head_ptr);
