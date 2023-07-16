@@ -1,5 +1,12 @@
 #include "keyboard_functions.h"
 
+/************************************
+Function : keyboard_key_registrations
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Controls how key registration works depending of the OS used.
+*************************************/   
+
 int keyboard_key_registrations()
 {
     int key = 0;

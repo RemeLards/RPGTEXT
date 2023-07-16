@@ -39,6 +39,7 @@ monsters_goblin(int goblin_type)
         goblin_monster_ptr -> stamina = 0;
         goblin_monster_ptr -> experience_given = 501;
         goblin_monster_ptr -> monster_type = NORMAL_GOBLIN;
+        goblin_monster_ptr -> monster_status = MONSTER_ALIVE;
     
     }
 
@@ -58,27 +59,31 @@ monsters_goblin(int goblin_type)
         goblin_monster_ptr -> mana = 0;
         goblin_monster_ptr -> stamina = 0;
         goblin_monster_ptr -> experience_given = 501;
-        goblin_monster_ptr -> monster_type = GLASSCANON_GOBLIN;   
+        goblin_monster_ptr -> monster_type = GLASSCANON_GOBLIN;
+        goblin_monster_ptr -> monster_status = MONSTER_ALIVE;   
     }
     
     return goblin_monster_ptr;
 }
 
+/************************************
+Function : monsters_malloc_next_monster_single_linked_list
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Inserts a new memory allocated monster struct on the Monster Single Linked List Head, and the new Head points to the old SLL Head
+*************************************/   
+
 void
-monsters_malloc_next_monster_single_linked_list(SLL_STRUCT *monster_single_linked_list_head_ptr, MONSTER *monster_struct_ptr)
+monsters_malloc_next_monster_single_linked_list(SLL_STRUCT **monster_single_linked_list_head_ptr, MONSTER *monster_struct_ptr)
 {
-    if ( monster_single_linked_list_head_ptr -> data_ptr != NULL)
+    if ( (*monster_single_linked_list_head_ptr) -> data_ptr  != NULL)
     {
-        SLL_STRUCT *monster_sll_tail = sll_get_tail_sll_ptr(monster_single_linked_list_head_ptr);
-        
-        monster_sll_tail -> next_sll_struct = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
-        
-        sll_initialize( monster_sll_tail -> next_sll_struct ); 
-        
-        monster_sll_tail -> next_sll_struct -> data_ptr = (void *) monster_struct_ptr;
+        (*monster_single_linked_list_head_ptr) = sll_add_new_head( (*monster_single_linked_list_head_ptr) );
+
+        (*monster_single_linked_list_head_ptr) -> data_ptr = (void *) monster_struct_ptr;
     }
 
-    else monster_single_linked_list_head_ptr -> data_ptr =  (void *) monster_struct_ptr;
+    else (*monster_single_linked_list_head_ptr) -> data_ptr =  (void *) monster_struct_ptr;
 }
 
 

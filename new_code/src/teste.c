@@ -16,16 +16,21 @@ main(/*int agrc, char *argv[]*/)
     MAP* map_struct_ptr = (MAP *) malloc (sizeof(MAP));
     map_map_init(map_struct_ptr);
 
+    map_struct_ptr -> map_level = 5; //TESTING IF MOBS WILL WORK
 
     personagem_ptr -> character_map_position_struct_ptr -> x_position = MAP_SIZE/2;
     personagem_ptr -> character_map_position_struct_ptr -> y_position = MAP_SIZE/2;
 
+    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
+    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
+    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
+    //getchar();
     int key = 0;
     system_clear();
     
     while (key != 'Q' && key != 'q')
     {
-        key = map_map_menu(personagem_ptr,monster_single_linked_list,map_struct_ptr);
+        key = map_map_menu(personagem_ptr,&(monster_single_linked_list),map_struct_ptr);
     }
     
     /*personagem_ptr = main_menu();
@@ -40,6 +45,7 @@ main(/*int agrc, char *argv[]*/)
     free(personagem_ptr -> character_map_position_struct_ptr);
     free(personagem_ptr);
     free(map_struct_ptr);
+    sll_free_all(monster_single_linked_list);
     
 
     return 0; 

@@ -20,6 +20,7 @@ int
 rng_get_seed()//Getting the seed from .txt
 {
     FILE* file_ptr;
+    rng_check_seed_file();
     file_ptr = fopen("rng.txt", "r");
     char c_seed[12];
     fgets(c_seed, 12 ,file_ptr);
@@ -46,7 +47,6 @@ rng_check_seed_file()//Checking if "seed.txt" exist
         fclose(file_ptr);
         file_ptr = fopen("rng.txt", "w");
         fprintf(file_ptr,"%d\n", 1234);//1234 is the default seed
-        fclose(file_ptr);
     }
 
     //If seed.txt exist
@@ -80,6 +80,7 @@ int
 rng_generate_random_number()//Xorshift algorithm
 {
     int n = rng_get_seed(); // "Seed"
+    if(n == 0)n = 1234;
 	n ^= n << 13; // << shifts bits to the left "x << y" = x * (2^y)
 	n ^= n >> 17; // >> shifts bits to the right "x >> y" = x / (2^y)
 	n ^= n << 5; // 
@@ -103,16 +104,30 @@ rng_extend_random_number_group()
     rng_save_seed(seed);
 }
 
+/************************************
+Function : rng_generate_random_positive_number
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Uses rng_generate_random_number() function, and if the number is negative its sign is changed
+*************************************/
 
-int rng_generate_random_positive_number()
+int
+rng_generate_random_positive_number()
 {
     int n = rng_generate_random_number();
     if ( n < 0 ) n*= -1;
     return n;
 }
 
+/************************************
+Function : rng_generate_random_sign
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Uses rng_generate_random_number() function, returns random signs (Example of use : simulate random movement)
+*************************************/
 
-int rng_generate_random_sign()
+int
+rng_generate_random_sign()
 {
     int sign = 1;
     int n = rng_generate_random_number();

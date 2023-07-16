@@ -14,6 +14,7 @@ typedef struct monster_struct
     float ability_power;
     float experience_given;
     int monster_type;
+    int monster_status;
     MAP_POSITION *monster_map_position_struct_ptr;
 
 }MONSTER;

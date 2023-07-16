@@ -1,9 +1,11 @@
 #ifndef _FIGHT_FUNCTIONS_HEADER_
 
 #define _FIGHT_FUNCTIONS_HEADER_
+
 //-------------------------
 //HEADERS
 //-------------------------
+
 #include "character.h"
 #include "monsters.h"
 #include "rng_functions.h"
@@ -12,6 +14,7 @@
 
 #include "fight_constants.h"
 #include "character_constants.h"
+
 
 //-------------------------
 //FUNCTIONS PROTOTYPES

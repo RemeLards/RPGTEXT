@@ -574,7 +574,7 @@ character_print_statistics(CHARACTER *character_struct_ptr)
 }
 
 /************************************
-Function :character_ print_attributes
+Function : character_ print_attributes
 Date : 5/24/2023
 Usable? : Yes
 Explanation : Prints character attributes statistics, strenght number, wisdow number, etc.
@@ -593,10 +593,10 @@ character_print_attributes(CHARACTER *character_struct_ptr, int index)
 }
 
 /************************************
-Function :character_init_all
+Function : character_init_all
 Date : 5/28/2023
 Usable? : Yes
-Explanation : Initializes all character variables using all other " character_init_<struct_name> " functions
+Explanation : Initialize all character variables using all other " character_init_<struct_name> " functions
 *************************************/      
 void
 character_init_all(CHARACTER *character_struct_ptr)
@@ -609,7 +609,7 @@ character_init_all(CHARACTER *character_struct_ptr)
 }
 
 /************************************
-Function :character_malloc_all
+Function : character_malloc_all
 Date : 5/28/2023
 Usable? : Yes
 Explanation : Memory allocates all structs pointers related to the character (including it's own struct), and retuns a usable CHARACTER pointer type
@@ -628,7 +628,7 @@ character_malloc_all()
 }
 
 /************************************
-Function :character_free_all
+Function : character_free_all
 Date : 5/28/2023
 Usable? : Yes
 Explanation : Frees all memory allocated to all structs pointers related to the character (including it's own struct)
@@ -643,6 +643,13 @@ character_free_all(CHARACTER *character_struct_ptr)
     free(character_struct_ptr -> character_map_position_struct_ptr);
     free(character_struct_ptr);
 }
+
+/************************************
+Function : character_init_character
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Initialize all CHARACTER struct variables that aren't pointers
+*************************************/ 
 
 void
 character_init_character(CHARACTER *character_struct_ptr)
@@ -664,6 +671,13 @@ character_init_character(CHARACTER *character_struct_ptr)
     character_struct_ptr -> class = NONE_CLASS;
 
 }
+
+/************************************
+Function : character_init_character_position
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Initialize MAP_POSITION struct variables
+*************************************/ 
 
 void
 character_init_character_position(CHARACTER *character_struct_ptr)

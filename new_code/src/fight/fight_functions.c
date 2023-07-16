@@ -13,6 +13,13 @@
 //Functions
 //-------------------------
 
+/************************************
+Function : fight_monsters_base_dmg_calculation
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Calculates monster base damage
+*************************************/ 
+
 float
 fight_monsters_base_dmg_calculation(MONSTER *monster_struct_ptr)
 {
@@ -63,6 +70,14 @@ fight_monsters_base_dmg_calculation(MONSTER *monster_struct_ptr)
         if(roll > 9000 &&  roll <= 10000)monster -> attackpower *= 1.3;
     }*/
 }
+
+
+/************************************
+Function : fight_character_base_dmg_calculation
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Calculates character base damage
+*************************************/ 
 
 float
 fight_character_base_dmg_calculation(CHARACTER *character_struct_ptr)
@@ -126,6 +141,14 @@ fight_character_base_dmg_calculation(CHARACTER *character_struct_ptr)
     return FIGHT_FUNCTION_FLOAT_ERROR;
 
 }
+
+
+/************************************
+Function : fight_character_overall_dmg_calculation
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Calculates character overall damage (include critical damage calculation)
+*************************************/ 
 
 float
 fight_character_overall_dmg_calculation(CHARACTER *character_struct_ptr)
@@ -191,6 +214,14 @@ fight_character_overall_dmg_calculation(CHARACTER *character_struct_ptr)
 
 }
 
+
+/************************************
+Function : fight_character_death
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Text feedback representing character death, frees character from memory after death
+*************************************/ 
+
 void
 fight_character_death(CHARACTER *character_struct_ptr)
 {
@@ -202,6 +233,14 @@ fight_character_death(CHARACTER *character_struct_ptr)
     character_free_all(character_struct_ptr);
     //imenu(); //Retuns to the initial menu  
 }
+
+
+/************************************
+Function : fight_character_killed_monsters
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Text feedback representing character killed monster(s), gives player monster(s) experience
+*************************************/ 
 
 void
 fight_character_killed_monsters(CHARACTER *character_struct_ptr, MONSTER *monster_struct_ptr)
@@ -217,6 +256,13 @@ fight_character_killed_monsters(CHARACTER *character_struct_ptr, MONSTER *monste
 }
 
 //TODO
+/************************************
+Function : fight_attack_choise_menu
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Gives player a choice of attack type
+*************************************/ 
+
 void
 fight_attack_choise_menu(CHARACTER *character_struct_ptr)
 {
@@ -231,6 +277,14 @@ fight_attack_choise_menu(CHARACTER *character_struct_ptr)
         character_struct_ptr -> ability_type = MANA_ABILITY; // MENU FOR ABILITY CHOOSEN DOESNT EXIST
     }
 }
+
+
+/************************************
+Function : fight_fight_result
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Return the fight status (if Monster isn't dead/player is alive, monsters is dead or player died)
+*************************************/ 
 
 int
 fight_fight_result(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr)
@@ -256,6 +310,14 @@ fight_fight_result(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr)
 
 }
 
+
+/************************************
+Function : fight_fight_menu
+Date : 7/16/2023
+Usable? : Yes
+Explanation : Controls how fight works and what will happen after the end of it
+*************************************/ 
+
 int
 fight_fight_menu(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr/*, MONSTER *monster_count[]*/)
 {
@@ -278,8 +340,8 @@ fight_fight_menu(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr/*, 
 
     if (fight_status == CHARACTER_KILLED_MONSTERS) fight_character_killed_monsters(character_struct_ptr, monster_struct_ptr);
 
-    free(monster_struct_ptr);//Freeing monsters malloced struct (we could generalize to a group of monters or in other words a vector of monsters)
+    free(monster_struct_ptr); //Freeing monsters malloced struct (we could generalize to a group of monters or in other words a vector of monsters)
 
 
-    return fight_status;
+    return fight_status; //A way of the main game know what happened in the fight
 }
