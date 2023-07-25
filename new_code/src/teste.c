@@ -7,19 +7,18 @@
 int 
 main(/*int agrc, char *argv[]*/)
 {
-    CHARACTER *personagem_ptr = (CHARACTER *) malloc (sizeof(CHARACTER));
-    personagem_ptr -> character_map_position_struct_ptr = (MAP_POSITION *) malloc (sizeof(MAP_POSITION));
+    CHARACTER *personagem_ptr = character_malloc_all();
 
-    SLL_STRUCT *monster_single_linked_list = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
-    sll_initialize(monster_single_linked_list);
+    SLL_HOLDER_STRUCT* monster_holder_ptr = sll_holder_initialize();
 
-    MAP* map_struct_ptr = (MAP *) malloc (sizeof(MAP));
-    map_map_init(map_struct_ptr);
+    MAP* map_struct_ptr = map_init();
 
     map_struct_ptr -> map_level = 5; //TESTING IF MOBS WILL WORK
 
     personagem_ptr -> character_map_position_struct_ptr -> x_position = MAP_SIZE/2;
     personagem_ptr -> character_map_position_struct_ptr -> y_position = MAP_SIZE/2;
+    
+    map_struct_ptr -> map[personagem_ptr -> character_map_position_struct_ptr -> y_position][personagem_ptr -> character_map_position_struct_ptr -> x_position] = 'C';
 
     //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
     //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
@@ -30,7 +29,8 @@ main(/*int agrc, char *argv[]*/)
     
     while (key != 'Q' && key != 'q')
     {
-        key = map_map_menu(personagem_ptr,&(monster_single_linked_list),map_struct_ptr);
+        //implementar os "hoaders"
+        key = map_map_menu(personagem_ptr,monster_holder_ptr,map_struct_ptr);
     }
     
     /*personagem_ptr = main_menu();
@@ -42,10 +42,12 @@ main(/*int agrc, char *argv[]*/)
         character_free_all ( personagem_ptr );
     }*/
     
-    free(personagem_ptr -> character_map_position_struct_ptr);
-    free(personagem_ptr);
+    character_free_all(personagem_ptr);
     free(map_struct_ptr);
-    sll_free_all(monster_single_linked_list);
+    printf("\n monsters ammount = %d \n",monster_holder_ptr -> sll_size);
+    sll_holder_destroy(monster_holder_ptr);
+    printf("\n monster holder destroyed \n");
+    getch();
     
 
     return 0; 

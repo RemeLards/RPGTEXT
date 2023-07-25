@@ -7,6 +7,7 @@
 #include "monsters.h"
 #include "monsters_functions.h"
 #include "linked_list.h"
+#include "linked_list_holder.h"
 #include "keyboard_functions.h"
 #include "system_functions.h"
 #include "map.h"
@@ -14,20 +15,8 @@
 #include "rng_functions.h"
 #include <math.h>
 
-void
-map_map_init(MAP *map_ptr);
-
-void
-map_add_character_to_map( CHARACTER *character_struct_ptr, MAP *map_ptr );
-
-void
-map_add_monsters_to_map( SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr );
-
-void
-map_add_entities_to_map(CHARACTER *character_struct_ptr,SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
-
-void
-map_remove_entities_from_map(CHARACTER *character_struct_ptr,SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
+MAP *
+map_init();
 
 void
 map_print_map(MAP *map_ptr);
@@ -36,34 +25,31 @@ void
 map_print_map_lim();
 
 int
-map_character_update_position(CHARACTER *character_struct_ptr);
-
-void 
-map_character_position_map_limit_validation(CHARACTER *character_struct_ptr);
-
-int
-map_collision_validation(MAP* map_ptr, int x_coordinate, int y_coordinate);
-
-void
-map_monster_spawn( SLL_STRUCT **monster_single_linked_list_head_ptr, MAP *map_ptr);
+map_character_update_position(CHARACTER *character_struct_ptr,MAP *map_ptr);
 
 void
 map_monsters_update_position( SLL_STRUCT *monster_single_linked_list_head_ptr, MAP *map_ptr);
 
 void
-map_monsters_position_map_limit_validation( SLL_STRUCT *monster_single_linked_list_head_ptr);
+map_monster_spawn(SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr);
 
 void
-map_remove_character_from_map(CHARACTER *character_struct_ptr ,MAP* map_ptr);
+map_add_entity_to_map(MAP *map_ptr, int entity_x_position, int entity_y_position, char entity);
 
 void
-map_remove_monsters_from_map(SLL_STRUCT *monster_single_linked_list_head_ptr , MAP* map_ptr);
+map_remove_entity_from_map(MAP *map_ptr, int entity_old_x_position, int entity_old_y_position);
+
+int
+map_entity_map_limit_position_validation(MAP_POSITION *entity_map_position_struct_ptr);
+
+int
+map_collision_validation(MAP *map_ptr, int x_coordinate, int y_coordinate);
 
 SLL_STRUCT *
 map_fightable_monsters(SLL_STRUCT *monster_single_linked_list_head_ptr, CHARACTER *character_struct_ptr);
 
 int
-map_map_menu(CHARACTER *character_struct_ptr, SLL_STRUCT **monster_single_linked_list_head_ptr, MAP *map_ptr);
+map_map_menu(CHARACTER *character_struct_ptr, SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr);
 
 
 #endif

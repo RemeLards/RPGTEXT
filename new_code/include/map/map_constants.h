@@ -19,4 +19,10 @@ enum MAP_LEVELS
     FOREST_LEVEL,
 };
 
+enum MAP_LIMIT
+{
+    MAP_LIMIT_REACHED = 0,
+    MAP_LIMIT_NOT_REACHED,  
+};
+
 #endif

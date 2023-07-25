@@ -275,7 +275,7 @@ character_class_selection(CHARACTER *character_struct_ptr,int class)
 Function : character_init_skillpoints
 Date : 5/23/2023
 Usable? : Yes
-Explanation : initialize SKILLPOINTS struct variables
+Explanation : initializes SKILLPOINTS struct variables
 *************************************/
 void
 character_init_skillpoints(CHARACTER *character_struct_ptr)
@@ -492,7 +492,7 @@ attributes(CHARACTER* character, int option, int key)
 Function : character_init_level
 Date : 5/24/2023
 Usable? : Yes
-Explanation : initialize CHAR_LEVEL struct variables
+Explanation : initializes CHAR_LEVEL struct variables
 *************************************/
 void
 character_init_level(CHARACTER *character_struct_ptr)
@@ -596,7 +596,7 @@ character_print_attributes(CHARACTER *character_struct_ptr, int index)
 Function : character_init_all
 Date : 5/28/2023
 Usable? : Yes
-Explanation : Initialize all character variables using all other " character_init_<struct_name> " functions
+Explanation : Initializes all character variables using all other " character_init_<struct_name> " functions
 *************************************/      
 void
 character_init_all(CHARACTER *character_struct_ptr)
@@ -648,7 +648,7 @@ character_free_all(CHARACTER *character_struct_ptr)
 Function : character_init_character
 Date : 7/16/2023
 Usable? : Yes
-Explanation : Initialize all CHARACTER struct variables that aren't pointers
+Explanation : Initializes all CHARACTER struct variables that aren't pointers
 *************************************/ 
 
 void
@@ -676,7 +676,7 @@ character_init_character(CHARACTER *character_struct_ptr)
 Function : character_init_character_position
 Date : 7/16/2023
 Usable? : Yes
-Explanation : Initialize MAP_POSITION struct variables
+Explanation : Initializes MAP_POSITION struct variables
 *************************************/ 
 
 void

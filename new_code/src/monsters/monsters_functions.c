@@ -74,16 +74,25 @@ Explanation : Inserts a new memory allocated monster struct on the Monster Singl
 *************************************/   
 
 void
-monsters_malloc_next_monster_single_linked_list(SLL_STRUCT **monster_single_linked_list_head_ptr, MONSTER *monster_struct_ptr)
+monsters_malloc_next_monster_single_linked_list(SLL_HOLDER_STRUCT *monster_holder_ptr, MONSTER *monster_struct_ptr)
 {
-    if ( (*monster_single_linked_list_head_ptr) -> data_ptr  != NULL)
+    if ( monster_holder_ptr -> sll_head != NULL)
     {
-        (*monster_single_linked_list_head_ptr) = sll_add_new_head( (*monster_single_linked_list_head_ptr) );
+        monster_holder_ptr -> sll_tail = sll_add_new_tail(monster_holder_ptr -> sll_tail);
 
-        (*monster_single_linked_list_head_ptr) -> data_ptr = (void *) monster_struct_ptr;
+        sll_insert_data(monster_holder_ptr -> sll_tail, (void *) monster_struct_ptr);
+
+        monster_holder_ptr -> sll_size++;
     }
 
-    else (*monster_single_linked_list_head_ptr) -> data_ptr =  (void *) monster_struct_ptr;
+    else 
+    {
+        monster_holder_ptr -> sll_head = sll_initialize();
+        sll_insert_data(monster_holder_ptr -> sll_head, (void *) monster_struct_ptr);
+        monster_holder_ptr -> sll_tail = monster_holder_ptr -> sll_head; // At the start head = tail
+        
+        monster_holder_ptr -> sll_size++;
+    }
 }
 
 

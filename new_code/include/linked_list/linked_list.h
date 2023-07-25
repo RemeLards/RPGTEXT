@@ -9,6 +9,4 @@ typedef struct single_linked_list_struct
 
 }SLL_STRUCT;
 
-
-
 #endif

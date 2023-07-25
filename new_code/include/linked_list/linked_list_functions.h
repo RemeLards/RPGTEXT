@@ -16,17 +16,17 @@ sll_get_next_sll_ptr(SLL_STRUCT* sll);
 SLL_STRUCT *
 sll_get_tail_sll_ptr(SLL_STRUCT* sll);
 
-void
-sll_initialize(SLL_STRUCT* sll);
+SLL_STRUCT *
+sll_initialize();
 
 SLL_STRUCT *
 sll_add_new_tail(SLL_STRUCT* sll);
 
 SLL_STRUCT *
-sll_add_new_head(SLL_STRUCT *sll);
+sll_add_new_head(SLL_STRUCT *sll_head);
 
 void
-sll_free_all(SLL_STRUCT *sll);
+sll_destroy(SLL_STRUCT *sll_head);
 
 void 
 sll_insert_data(SLL_STRUCT *sll, void* data);

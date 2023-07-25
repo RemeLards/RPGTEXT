@@ -30,11 +30,13 @@ Date : 7/16/2023
 Usable? : Yes
 Explanation : Initializes all pointers inside a Single Linked List as NULL
 *************************************/ 
-void
-sll_initialize(SLL_STRUCT *sll)
+SLL_STRUCT *
+sll_initialize()
 {
+    SLL_STRUCT *sll = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
     sll -> data_ptr = NULL;
     sll -> next_sll_struct = NULL;
+    return sll;
 }
 
 /************************************
@@ -60,8 +62,7 @@ Explanation : Inserts a Single Linked List (Node) on the Tail (Last Single Linke
 SLL_STRUCT *
 sll_add_new_tail(SLL_STRUCT *sll)
 {
-    SLL_STRUCT *sll_new_tail = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
-    sll_initialize(sll_new_tail);
+    SLL_STRUCT *sll_new_tail = sll_initialize();
 
     SLL_STRUCT *sll_old_tail = sll_get_tail_sll_ptr(sll);
     sll_old_tail -> next_sll_struct = sll_new_tail;
@@ -77,11 +78,10 @@ Usable? : Yes
 Explanation : Inserts a new Single Linked List on the Head, doing that, this new SLL becomes the new SLL Head
 *************************************/ 
 SLL_STRUCT *
-sll_add_new_head(SLL_STRUCT *sll)
+sll_add_new_head(SLL_STRUCT *sll_head)
 {
-    SLL_STRUCT *sll_new_head = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
-    sll_initialize(sll_new_head);
-    sll_new_head -> next_sll_struct = sll;
+    SLL_STRUCT *sll_new_head = sll_initialize();
+    sll_new_head -> next_sll_struct = sll_head;
 
     return sll_new_head;
 }
@@ -93,19 +93,19 @@ Usable? : Yes
 Explanation : Inserts a new memory allocated monster struct on the Single Linked List Head, and the new Head points to the old SLL Head
 *************************************/ 
 void
-sll_free_all(SLL_STRUCT* sll)
+sll_destroy(SLL_STRUCT* sll_head)
 {
     SLL_STRUCT* next_sll = NULL;
 
-    while ( sll != NULL )
+    while ( sll_head != NULL )
     {
-        if (sll_get_data(sll) != NULL) free(sll_get_data(sll)); 
+        if (sll_get_data(sll_head) != NULL) free(sll_get_data(sll_head)); 
 
-        next_sll = sll_get_next_sll_ptr(sll);
+        next_sll = sll_get_next_sll_ptr(sll_head);
 
-        free(sll);
+        free(sll_head);
 
-        sll = next_sll;
+        sll_head = next_sll;
     }
 }
 
@@ -120,3 +120,4 @@ sll_insert_data(SLL_STRUCT *sll, void* data)
 {
     sll -> data_ptr = data;
 }
+
