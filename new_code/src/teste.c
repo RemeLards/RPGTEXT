@@ -18,29 +18,18 @@ main(/*int agrc, char *argv[]*/)
     personagem_ptr -> character_map_position_struct_ptr -> x_position = MAP_SIZE/2;
     personagem_ptr -> character_map_position_struct_ptr -> y_position = MAP_SIZE/2;
     
-    map_struct_ptr -> map[personagem_ptr -> character_map_position_struct_ptr -> y_position][personagem_ptr -> character_map_position_struct_ptr -> x_position] = 'C';
-
-    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
-    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
-    //printf("numero aleatorio teste : %d\n",rng_generate_random_number());
-    //getchar();
+    map_struct_ptr -> map[personagem_ptr -> character_map_position_struct_ptr -> y_position]
+                         [personagem_ptr -> character_map_position_struct_ptr -> x_position] = 'C';
+    
     int key = 0;
+    
     system_clear();
     
     while (key != 'Q' && key != 'q')
     {
-        //implementar os "hoaders"
         key = map_map_menu(personagem_ptr,monster_holder_ptr,map_struct_ptr);
+        debug_map_status_checker( map_struct_ptr, monster_holder_ptr, personagem_ptr);
     }
-    
-    /*personagem_ptr = main_menu();
-
-    if ( personagem_ptr == NULL ) printf("ponteiro nulo LOL");
-    else 
-    {
-        character_print_statistics ( personagem_ptr );
-        character_free_all ( personagem_ptr );
-    }*/
     
     character_free_all(personagem_ptr);
     free(map_struct_ptr);

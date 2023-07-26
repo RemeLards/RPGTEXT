@@ -1,5 +1,9 @@
 #include "map_functions.h"
 
+//#include "debug_functions.h" //Including momentarly to debug, so it wont affect "map_functions.h"
+//#include <windows.h> // I will let my program run automatically, but to not stress CPU I will add sleep()
+//#define SLEEP_500MS 500
+
 /************************************
 Function : map_map_init
 Date : 7/16/2023
@@ -8,7 +12,7 @@ Explanation : Iniatializes the game map
 *************************************/ 
 
 MAP * 
-map_init()
+map_init(void)
 {
     MAP *map_ptr = (MAP *) malloc (sizeof(MAP));
 
@@ -16,8 +20,6 @@ map_init()
     {
         for(int j = 0; j < MAP_SIZE; j++) map_ptr -> map[i][j] = ' ';
     }
-
-    map_ptr -> monster_count = NO_MONSTERS;
 
     map_ptr -> map_level = TUTORIAL_LEVEL;
 
@@ -92,7 +94,7 @@ Explanation : Show (prints) map delimiation, making the map "grid" on the consol
 *************************************/ 
 
 void
-map_print_map_lim()
+map_print_map_lim(void)
 {
     for(int map_lim = 0; map_lim < MAP_SIZE * MAP_HYPHEN_SCALE; map_lim++)printf(" -");
     printf("\n");
@@ -110,8 +112,9 @@ int
 map_character_update_position(CHARACTER *character_struct_ptr, MAP *map_ptr)
 {
     int key = keyboard_key_registrations();
+    //int key = debug_random_character_movement_generator();
 
-    if ( key != ENTER )
+    if ( key == UP || key == DOWN || key == LEFT || key == RIGHT )
     {
         int character_x_old_pos = character_struct_ptr -> character_map_position_struct_ptr -> x_position;
         int character_y_old_pos = character_struct_ptr -> character_map_position_struct_ptr -> y_position;
@@ -179,7 +182,7 @@ Explanation : Spawn monsters dinamically on random valid positions (SPAWNING ONL
 void
 map_monster_spawn(SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr)
 {
-    if ( map_ptr -> monster_count < map_ptr -> map_level )
+    if ( monster_holder_ptr -> sll_size < map_ptr -> map_level )
     {
         MONSTER *monster_struct_ptr = monsters_goblin(NORMAL_GOBLIN); //RANDOMIZE MOBS DEPENDING MAP OF THE LEVEL
         monster_struct_ptr -> monster_map_position_struct_ptr -> x_position = (rng_generate_random_number() % MAP_SIZE);
@@ -197,8 +200,6 @@ map_monster_spawn(SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr)
         monsters_malloc_next_monster_single_linked_list(monster_holder_ptr, monster_struct_ptr);
 
         map_add_entity_to_map(map_ptr,*(monster_x_position_ptr),*(monster_y_position_ptr), 'M');
-        
-        map_ptr -> monster_count++;
     }
 }
 
@@ -267,16 +268,25 @@ map_monsters_update_position( SLL_STRUCT *monster_single_linked_list_head_ptr, M
                 {
                     // Even though "map_entity_map_limit_position_validation" corrects the position if its beyond map limit,
                     // if atleast one of coordinates (x or y) is valid (and so didn't need correction)
-                    // we need to update the entity position on the map (in this case the monster position).
+                    // we need to update the entity position on the map (in this case the monster position) and check collision too.
                     // If both are invalid position and both got corrected, then we dont need to update the entity position on the map
     
                     monster_x_new_position = monster_struct_ptr -> monster_map_position_struct_ptr -> x_position;
                     monster_y_new_position = monster_struct_ptr -> monster_map_position_struct_ptr -> y_position;
 
                     if ( ( monster_x_new_position != monster_x_old_position ) || ( monster_y_new_position != monster_y_old_position ) )
-                    {
-                        map_remove_entity_from_map(map_ptr,monster_x_old_position,monster_y_old_position);
-                        map_add_entity_to_map(map_ptr,monster_x_new_position,monster_y_new_position,'M');
+                    {     
+                        if ( map_collision_validation(map_ptr, monster_x_new_position, monster_y_new_position) == COLLISION )
+                        {
+                            monster_struct_ptr -> monster_map_position_struct_ptr -> x_position = monster_x_old_position;
+                            monster_struct_ptr -> monster_map_position_struct_ptr -> y_position = monster_y_old_position;
+                        }
+
+                        else
+                        {
+                            map_remove_entity_from_map(map_ptr,monster_x_old_position,monster_y_old_position);
+                            map_add_entity_to_map(map_ptr,monster_x_new_position,monster_y_new_position,'M');
+                        }
                     }
                 }
             }
@@ -306,47 +316,38 @@ map_collision_validation(MAP* map_ptr, int x_coordinate, int y_coordinate)
 
 /************************************
 Function : map_fightable_monsters
-Date : 7/16/2023
+Date : 7/25/2023
 Usable? : No
 Explanation : Returns a SLL containing all monsters near the player, so the player can fight them
 *************************************/ 
 
 SLL_STRUCT *
-map_fightable_monsters(SLL_STRUCT *monster_single_linked_list_head_ptr, CHARACTER *character_struct_ptr)
+map_fightable_monsters( MAP *map_ptr, CHARACTER *character_struct_ptr )
 {
-    SLL_STRUCT *sll_copy = monster_single_linked_list_head_ptr;
-    SLL_STRUCT *sll_fightable_monsters = NULL;
-    MONSTER *monster_struct_ptr = NULL;
-    int monster_character_x_difference = 0;
-    int monster_character_y_difference = 0;
+    int character_x_position = character_struct_ptr -> character_map_position_struct_ptr -> x_position;
+    int character_y_position = character_struct_ptr -> character_map_position_struct_ptr -> y_position;
 
-    while ( sll_copy != NULL )
+    //We will find monster around the player (3x3 square, without counting the middle, because the player is on the middle)
+    for ( int y = character_y_position - 1; y < MAP_SIZE && y <= character_y_position + 1; y++ )
     {
-        if ( sll_get_data(sll_copy) != NULL )
+        if ( y < 0 ) y++;
+
+        for ( int x = character_x_position - 1; x < MAP_SIZE && x <= character_x_position + 1; x++ )
         {
-            monster_struct_ptr = (MONSTER *) sll_get_data(sll_copy);
-
-            monster_character_x_difference = (monster_struct_ptr -> monster_map_position_struct_ptr -> x_position) - (character_struct_ptr -> character_map_position_struct_ptr -> x_position);
-            monster_character_y_difference = (monster_struct_ptr -> monster_map_position_struct_ptr -> y_position) - (character_struct_ptr -> character_map_position_struct_ptr -> y_position);
-
-            if ( pow(monster_character_x_difference,2) + pow(monster_character_y_difference,2) <= pow(MAX_MONSTER_WALKABLE_DISTANCE_AT_ONCE,2))
-            {
-                if( sll_fightable_monsters == NULL) sll_insert_data(sll_fightable_monsters, monster_struct_ptr);
-                
-                else
-                {
-                    sll_add_new_head(sll_fightable_monsters);
-                    sll_insert_data(sll_fightable_monsters, monster_struct_ptr);
-                }
-            }
+            if ( x < 0 ) x++;
+            else if ( x == character_x_position ) x++;
             
+            if ( map_ptr -> map[y][x] == 'M' );
         }
-
-        sll_copy = sll_get_next_sll_ptr(sll_copy);
     }
 
-    return sll_fightable_monsters;
 }
+
+SLL_STRUCT *
+map_find_monster_by_coordinates( MAP *map_ptr, SLL_STRUCT *monster_sll, int x_coordinate, int y_coordinate )
+{
+
+};
 
 
 /************************************
@@ -359,23 +360,13 @@ Explanation : Contains the Logic of the map menu, in other words, makes the map 
 int 
 map_map_menu(CHARACTER *character_struct_ptr,SLL_HOLDER_STRUCT* monster_holder_ptr,MAP *map_ptr)
 {
-    //map_add_entities_to_map(character_struct_ptr, monster_holder_ptr -> sll_head, map_ptr);
-
     map_print_map(map_ptr);
-
-    //map_remove_entities_from_map(character_struct_ptr, monster_holder_ptr -> sll_head, map_ptr);
     
     int key = map_character_update_position(character_struct_ptr, map_ptr);
     
-    //map_character_position_map_limit_validation(character_struct_ptr);
-
     map_monsters_update_position(monster_holder_ptr -> sll_head, map_ptr);
-
-    //map_monsters_position_map_limit_validation(monster_holder_ptr -> sll_head);
     
     map_monster_spawn(monster_holder_ptr,map_ptr);
-    
-    //map_monsters_update_position(monster_holder_ptr -> sll_head, map_ptr);
 
     system_clear();
 

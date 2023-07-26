@@ -9,19 +9,19 @@
 #include "character_functions.h"
 
 
-int main_menu_start_menu();
+int main_menu_start_menu(void);
 
 //char* main_menu_load_game_menu()
 
-int main_menu_create_character_menu();
+int main_menu_create_character_menu(void);
 
-int main_menu_race_selection_menu();
+int main_menu_race_selection_menu(void);
 
-int main_menu_class_selection_menu();
+int main_menu_class_selection_menu(void);
 
-char* main_menu_character_name_creation();
+char* main_menu_character_name_creation(void);
 
-CHARACTER * main_menu();
+CHARACTER * main_menu(void);
 
 
 #endif

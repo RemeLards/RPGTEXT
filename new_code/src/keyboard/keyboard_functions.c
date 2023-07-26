@@ -7,7 +7,7 @@ Usable? : Yes
 Explanation : Controls how key registration works depending of the OS used.
 *************************************/   
 
-int keyboard_key_registrations()
+int keyboard_key_registrations(void)
 {
     int key = 0;
 

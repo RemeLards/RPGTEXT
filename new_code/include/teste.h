@@ -14,6 +14,7 @@
 #include "main_menu_functions.h"
 #include "map_functions.h"
 #include "linked_list_holder_functions.h"
+#include "debug_functions.h"
 
 
 #endif

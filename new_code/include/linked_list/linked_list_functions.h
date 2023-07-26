@@ -8,27 +8,30 @@
 #include <stdlib.h>
 
 void *
-sll_get_data(SLL_STRUCT* sll);
+sll_get_data( SLL_STRUCT *sll );
 
 SLL_STRUCT *
-sll_get_next_sll_ptr(SLL_STRUCT* sll);
+sll_get_next_sll_ptr( SLL_STRUCT *sll );
 
 SLL_STRUCT *
-sll_get_tail_sll_ptr(SLL_STRUCT* sll);
+sll_get_tail_sll_ptr( SLL_STRUCT *sll );
 
 SLL_STRUCT *
-sll_initialize();
+sll_initialize( void );
 
 SLL_STRUCT *
-sll_add_new_tail(SLL_STRUCT* sll);
+sll_add_new_tail( SLL_STRUCT *sll );
 
 SLL_STRUCT *
-sll_add_new_head(SLL_STRUCT *sll_head);
+sll_add_new_head( SLL_STRUCT *sll_head );
 
 void
-sll_destroy(SLL_STRUCT *sll_head);
+sll_destroy( SLL_STRUCT *sll_head );
 
 void 
-sll_insert_data(SLL_STRUCT *sll, void* data);
+sll_insert_data( SLL_STRUCT *sll, void* data );
+
+void
+sll_remove( SLL_STRUCT *sll_head , void *data );
 
 #endif

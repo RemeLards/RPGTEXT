@@ -16,13 +16,13 @@
 #include <math.h>
 
 MAP *
-map_init();
+map_init(void);
 
 void
 map_print_map(MAP *map_ptr);
 
 void
-map_print_map_lim();
+map_print_map_lim(void);
 
 int
 map_character_update_position(CHARACTER *character_struct_ptr,MAP *map_ptr);
@@ -46,7 +46,7 @@ int
 map_collision_validation(MAP *map_ptr, int x_coordinate, int y_coordinate);
 
 SLL_STRUCT *
-map_fightable_monsters(SLL_STRUCT *monster_single_linked_list_head_ptr, CHARACTER *character_struct_ptr);
+map_fightable_monsters(MAP *map_ptr, CHARACTER *character_struct_ptr);
 
 int
 map_map_menu(CHARACTER *character_struct_ptr, SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr);

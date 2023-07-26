@@ -12,7 +12,7 @@
 
 #endif
 
-int keyboard_key_registrations();
+int keyboard_key_registrations(void);
 
 
 #endif

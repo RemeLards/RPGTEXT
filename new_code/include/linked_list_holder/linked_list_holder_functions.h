@@ -7,10 +7,12 @@
 #include <stdlib.h>
 
 SLL_HOLDER_STRUCT *
-sll_holder_initialize();
+sll_holder_initialize( void );
 
 void
-sll_holder_destroy(SLL_HOLDER_STRUCT* sll_holder);
+sll_holder_destroy( SLL_HOLDER_STRUCT *sll_holder );
 
+void
+sll_holder_remove_sll( SLL_HOLDER_STRUCT *sll_holder, void *data );
 
 #endif

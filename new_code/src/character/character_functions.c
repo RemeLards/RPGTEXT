@@ -616,7 +616,7 @@ Explanation : Memory allocates all structs pointers related to the character (in
 *************************************/   
 
 CHARACTER *
-character_malloc_all()
+character_malloc_all(void)
 {
     CHARACTER *character_struct_ptr = (CHARACTER *) malloc (sizeof(CHARACTER));
     character_struct_ptr -> level_struct_ptr = (LEVEL *) malloc (sizeof(LEVEL));

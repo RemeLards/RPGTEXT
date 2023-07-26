@@ -7,7 +7,7 @@
 typedef struct map_struct
 {
     char map[MAP_SIZE][MAP_SIZE];
-    int monster_count;
+    int resource_count;
     int map_level;
 
 }MAP;

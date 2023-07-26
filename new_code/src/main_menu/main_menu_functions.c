@@ -21,7 +21,7 @@ Explanation : Creates the start menu of the game
 *************************************/ 
 
 int 
-main_menu_start_menu()
+main_menu_start_menu(void)
 {
     const char *options_names[] = {"New Game","Load Game","Quit Game"};
     const int num_options = 3;
@@ -58,7 +58,7 @@ Explanation : Creates the character creation menu, where you choose Class, Race 
 *************************************/ 
 
 int 
-main_menu_create_character_menu()
+main_menu_create_character_menu(void)
 {
     const char *options_names[] = {"Select Race","Select Class","Start Game","Return"};
     const int num_options = 4;
@@ -75,7 +75,7 @@ Explanation : Creates the race creation menu, where you choose a character Race
 *************************************/ 
 
 int 
-main_menu_race_selection_menu()
+main_menu_race_selection_menu(void)
 {
     const char *options_names[] = {"Human", "Elf","Goblin","Dwarf","Troll","Orc","Minotaur","Gnome"};
     const int num_options = 8;
@@ -92,7 +92,7 @@ Explanation : Creates the class creation menu, where you choose a character Clas
 *************************************/ 
 
 int 
-main_menu_class_selection_menu()
+main_menu_class_selection_menu(void)
 {
     const char *options_names[] = {"Warrior","Paladin","Archer","Rogue","Priest","Mage","Necromancer","Berserker"};
     const int num_options = 8;
@@ -111,7 +111,7 @@ pointer, if its NULL the player exit the game, else it started or loaded a game.
 *************************************/ 
 
 CHARACTER * 
-main_menu()
+main_menu(void)
 {
     CHARACTER *character_struct_ptr = NULL;
     int race = NONE_RACE;

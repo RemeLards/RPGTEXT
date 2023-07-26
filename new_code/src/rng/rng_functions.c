@@ -17,7 +17,7 @@ Explanation : gets a number from "rng.txt" to use as a Pseudo Random Number Gene
 *************************************/
 
 int
-rng_get_seed()//Getting the seed from .txt
+rng_get_seed(void)//Getting the seed from .txt
 {
     FILE* file_ptr;
     rng_check_seed_file();
@@ -37,7 +37,7 @@ Explanation : checks if "rng.txt" exists, if it doesn't, this function puts a de
 *************************************/
 
 void
-rng_check_seed_file()//Checking if "seed.txt" exist
+rng_check_seed_file(void)//Checking if "seed.txt" exist
 {
     FILE *file_ptr;
     file_ptr = fopen("rng.txt", "r");
@@ -77,7 +77,7 @@ Explanation : This is an algorithm to generate a Random Number Generator (need t
 *************************************/
 
 int
-rng_generate_random_number()//Xorshift algorithm
+rng_generate_random_number(void)//Xorshift algorithm
 {
     int n = rng_get_seed(); // "Seed"
     if(n == 0)n = 1234;
@@ -97,7 +97,7 @@ This loop can be small or big, this functions tries to get this loop as big as p
 *************************************/
 
 void
-rng_extend_random_number_group()
+rng_extend_random_number_group(void)
 {
     int seed = rng_get_seed(); 
     seed += 2;
@@ -112,7 +112,7 @@ Explanation : Uses rng_generate_random_number() function, and if the number is n
 *************************************/
 
 int
-rng_generate_random_positive_number()
+rng_generate_random_positive_number(void)
 {
     int n = rng_generate_random_number();
     if ( n < 0 ) n*= -1;
@@ -127,7 +127,7 @@ Explanation : Uses rng_generate_random_number() function, returns random signs (
 *************************************/
 
 int
-rng_generate_random_sign()
+rng_generate_random_sign(void)
 {
     int sign = 1;
     int n = rng_generate_random_number();

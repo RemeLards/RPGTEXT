@@ -7,7 +7,7 @@ Usable? : Yes
 Explanation : Uses the correct terminal OS command to clear all the terminal text (Example of use : faking a clear screen to the user )
 *************************************/ 
 
-void system_clear()
+void system_clear(void)
 {
     #ifdef _WIN32
         system("cls");

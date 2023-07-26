@@ -14,7 +14,7 @@
 enum KEYBOARD_COMMANDS
 {
     NULL_KEY = -1,
-    UP,
+    UP = 0,
     DOWN,
     LEFT,
     RIGHT,

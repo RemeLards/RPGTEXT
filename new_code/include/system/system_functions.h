@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 
-void system_clear();
+void system_clear(void);
 
 
 #endif

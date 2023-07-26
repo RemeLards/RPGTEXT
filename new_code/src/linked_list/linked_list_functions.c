@@ -7,7 +7,7 @@ Usable? : Yes
 Explanation : Returns Single Linked List Data
 *************************************/ 
 void*
-sll_get_data(SLL_STRUCT *sll)
+sll_get_data( SLL_STRUCT *sll )
 {
     return sll -> data_ptr;
 }
@@ -19,7 +19,7 @@ Usable? : Yes
 Explanation : Returns Single Linked List Next Single Linked List (AKA Next Node) pointer
 *************************************/ 
 SLL_STRUCT *
-sll_get_next_sll_ptr(SLL_STRUCT *sll)
+sll_get_next_sll_ptr( SLL_STRUCT *sll )
 {
     return sll -> next_sll_struct;
 }
@@ -31,7 +31,7 @@ Usable? : Yes
 Explanation : Initializes all pointers inside a Single Linked List as NULL
 *************************************/ 
 SLL_STRUCT *
-sll_initialize()
+sll_initialize( void )
 {
     SLL_STRUCT *sll = (SLL_STRUCT *) malloc (sizeof(SLL_STRUCT));
     sll -> data_ptr = NULL;
@@ -46,7 +46,7 @@ Usable? : Yes
 Explanation : Returns Single Linked List Last Next Single Linked List pointer that isn't NULL
 *************************************/ 
 SLL_STRUCT *
-sll_get_tail_sll_ptr(SLL_STRUCT *sll)
+sll_get_tail_sll_ptr( SLL_STRUCT *sll )
 {
     SLL_STRUCT *sll_copy = NULL;
     for(sll_copy = sll; sll_get_next_sll_ptr(sll_copy) != NULL; sll_copy = sll_get_next_sll_ptr(sll_copy));
@@ -60,7 +60,7 @@ Usable? : Yes
 Explanation : Inserts a Single Linked List (Node) on the Tail (Last Single Linked List pointer that isn't NULL)
 *************************************/ 
 SLL_STRUCT *
-sll_add_new_tail(SLL_STRUCT *sll)
+sll_add_new_tail( SLL_STRUCT *sll )
 {
     SLL_STRUCT *sll_new_tail = sll_initialize();
 
@@ -78,7 +78,7 @@ Usable? : Yes
 Explanation : Inserts a new Single Linked List on the Head, doing that, this new SLL becomes the new SLL Head
 *************************************/ 
 SLL_STRUCT *
-sll_add_new_head(SLL_STRUCT *sll_head)
+sll_add_new_head( SLL_STRUCT *sll_head )
 {
     SLL_STRUCT *sll_new_head = sll_initialize();
     sll_new_head -> next_sll_struct = sll_head;
@@ -93,7 +93,7 @@ Usable? : Yes
 Explanation : Inserts a new memory allocated monster struct on the Single Linked List Head, and the new Head points to the old SLL Head
 *************************************/ 
 void
-sll_destroy(SLL_STRUCT* sll_head)
+sll_destroy( SLL_STRUCT* sll_head )
 {
     SLL_STRUCT* next_sll = NULL;
 
@@ -116,8 +116,33 @@ Usable? : Yes
 Explanation : Inserts any data type inside the Single Linked List data_ptr variable
 *************************************/ 
 void 
-sll_insert_data(SLL_STRUCT *sll, void* data)
+sll_insert_data( SLL_STRUCT *sll, void* data )
 {
     sll -> data_ptr = data;
 }
+
+/************************************
+Function : sll_remove
+Date : 7/25/2023
+Usable? : Yes
+Explanation : Removes a Single Linked List (Node) from the sequence, when passing a respective data
+*************************************/ 
+void
+sll_remove( SLL_STRUCT *sll_head , void *data )
+{
+    SLL_STRUCT *sll_next = NULL;
+    SLL_STRUCT *sll_to_be_removed = NULL;
+
+    for(; sll_get_data( sll_get_next_sll_ptr( sll_head ) ) != data; sll_head = sll_get_next_sll_ptr(sll_head) );
+
+    sll_to_be_removed = sll_get_next_sll_ptr( sll_head ) ;
+
+    sll_next = sll_get_next_sll_ptr( sll_to_be_removed );
+
+    if ( sll_to_be_removed -> data_ptr != NULL) free ( sll_to_be_removed -> data_ptr );
+    if ( sll_to_be_removed != NULL) free (sll_to_be_removed);
+
+    sll_head -> next_sll_struct = sll_next;
+}
+
 
