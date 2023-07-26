@@ -319,7 +319,7 @@ Explanation : Controls how fight works and what will happen after the end of it
 *************************************/ 
 
 int
-fight_fight_menu(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr/*, MONSTER *monster_count[]*/)
+fight_fight_menu(CHARACTER *character_struct_ptr, MONSTER *monster_struct_ptr/*, MONSTER *monster_count[]*/)
 {
     int fight_status = CHARACTER_IS_ALIVE;
     

@@ -46,7 +46,13 @@ int
 map_collision_validation(MAP *map_ptr, int x_coordinate, int y_coordinate);
 
 SLL_STRUCT *
-map_fightable_monsters(MAP *map_ptr, CHARACTER *character_struct_ptr);
+map_fightable_monsters( MAP *map_ptr, CHARACTER *character_struct_ptr, SLL_STRUCT *monsters_head );
+
+SLL_STRUCT *
+map_find_monsters_around_character( MAP *map_ptr, SLL_STRUCT *monsters_head, int x_coordinate, int y_coordinate );
+
+MONSTER *
+map_find_monster_by_coordinates( SLL_STRUCT *monsters_head, int x_coordinate, int y_coordinate );
 
 int
 map_map_menu(CHARACTER *character_struct_ptr, SLL_HOLDER_STRUCT *monster_holder_ptr, MAP *map_ptr);

@@ -31,7 +31,7 @@ sll_destroy( SLL_STRUCT *sll_head );
 void 
 sll_insert_data( SLL_STRUCT *sll, void* data );
 
-void
+SLL_STRUCT *
 sll_remove( SLL_STRUCT *sll_head , void *data );
 
 #endif

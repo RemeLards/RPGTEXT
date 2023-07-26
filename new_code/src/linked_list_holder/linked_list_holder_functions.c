@@ -20,6 +20,6 @@ sll_holder_destroy( SLL_HOLDER_STRUCT *sll_holder )
 void
 sll_holder_remove_sll( SLL_HOLDER_STRUCT *sll_holder, void *data )
 {
-    sll_remove(sll_holder -> sll_head, data);
+    sll_holder -> sll_head = sll_remove(sll_holder -> sll_head, data);
     sll_holder -> sll_size--;
 }

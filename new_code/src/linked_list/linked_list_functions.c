@@ -127,22 +127,41 @@ Date : 7/25/2023
 Usable? : Yes
 Explanation : Removes a Single Linked List (Node) from the sequence, when passing a respective data
 *************************************/ 
-void
+SLL_STRUCT *
 sll_remove( SLL_STRUCT *sll_head , void *data )
 {
+    SLL_STRUCT *sll_copy = NULL;
     SLL_STRUCT *sll_next = NULL;
     SLL_STRUCT *sll_to_be_removed = NULL;
 
-    for(; sll_get_data( sll_get_next_sll_ptr( sll_head ) ) != data; sll_head = sll_get_next_sll_ptr(sll_head) );
+    if ( sll_head -> data_ptr == data ) // We need to change head ptr
+    {
+        sll_to_be_removed = sll_head;
+        
+        sll_next = sll_get_next_sll_ptr( sll_to_be_removed );
 
-    sll_to_be_removed = sll_get_next_sll_ptr( sll_head ) ;
+        if ( sll_to_be_removed -> data_ptr != NULL) free( sll_to_be_removed -> data_ptr );
+        if ( sll_to_be_removed != NULL) free( sll_to_be_removed );
 
-    sll_next = sll_get_next_sll_ptr( sll_to_be_removed );
+        sll_head = sll_next;
 
-    if ( sll_to_be_removed -> data_ptr != NULL) free ( sll_to_be_removed -> data_ptr );
-    if ( sll_to_be_removed != NULL) free (sll_to_be_removed);
+    }
 
-    sll_head -> next_sll_struct = sll_next;
+    else // We don't need to change head ptr
+    {
+        for ( sll_copy = sll_head; sll_get_data( sll_get_next_sll_ptr( sll_copy ) ) != data; sll_copy = sll_get_next_sll_ptr(sll_copy) );
+
+        sll_to_be_removed = sll_get_next_sll_ptr( sll_copy ) ;
+
+        sll_next = sll_get_next_sll_ptr( sll_to_be_removed );
+
+        if ( sll_to_be_removed -> data_ptr != NULL ) free( sll_to_be_removed -> data_ptr );
+        if ( sll_to_be_removed != NULL ) free( sll_to_be_removed );
+
+        sll_copy -> next_sll_struct = sll_next;
+    }
+
+    return sll_head;
 }
 
 

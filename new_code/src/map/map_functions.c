@@ -322,32 +322,88 @@ Explanation : Returns a SLL containing all monsters near the player, so the play
 *************************************/ 
 
 SLL_STRUCT *
-map_fightable_monsters( MAP *map_ptr, CHARACTER *character_struct_ptr )
+map_fightable_monsters( MAP *map_ptr, CHARACTER *character_struct_ptr, SLL_STRUCT *monsters_head)
 {
+    SLL_STRUCT *near_monsters = NULL;
+
     int character_x_position = character_struct_ptr -> character_map_position_struct_ptr -> x_position;
     int character_y_position = character_struct_ptr -> character_map_position_struct_ptr -> y_position;
-
-    //We will find monster around the player (3x3 square, without counting the middle, because the player is on the middle)
-    for ( int y = character_y_position - 1; y < MAP_SIZE && y <= character_y_position + 1; y++ )
-    {
-        if ( y < 0 ) y++;
-
-        for ( int x = character_x_position - 1; x < MAP_SIZE && x <= character_x_position + 1; x++ )
-        {
-            if ( x < 0 ) x++;
-            else if ( x == character_x_position ) x++;
-            
-            if ( map_ptr -> map[y][x] == 'M' );
-        }
-    }
+    //TRY TO FINISH IT WORKING AND THEN APPLY TO OBJETCS/NPS (TRY TO DO IT IN A GENERAL WAY)
+    near_monsters = map_find_monsters_around_character(map_ptr,monsters_head, character_x_position, character_y_position);
 
 }
 
+//We will find monster around the player (3x3 square, without counting the middle, because the player is on the middle)
 SLL_STRUCT *
-map_find_monster_by_coordinates( MAP *map_ptr, SLL_STRUCT *monster_sll, int x_coordinate, int y_coordinate )
+map_find_monsters_around_character( MAP *map_ptr, SLL_STRUCT *monsters_head, int x_coordinate, int y_coordinate )
 {
+    SLL_STRUCT *near_monters_head = NULL;
+    SLL_STRUCT *next_monster_node = NULL;
+    MONSTER *monster = NULL;
 
-};
+    for ( int y = y_coordinate - 1; y < MAP_SIZE && y <= y_coordinate + 1; y++ )
+    {
+        //if the player stays on the bottom of the map, the "Y" goes from MAP_SIZE-1 to MAP_SIZE+1, but maximum matrix index is MAP_SIZE
+        //if the player stays on the top of the map, the "Y" goes from -1 to 1, but negative index aren't usable
+        if ( y < 0 ) y++; 
+
+        for ( int x = x_coordinate - 1; x < MAP_SIZE && x <= x_coordinate + 1; x++ )
+        {
+            //if the player stays on the right corner of the map, the "X" goes from MAP_SIZE-1 to MAP_SIZE+1, but maximum matrix index is MAP_SIZE
+            //if the player stays on the left corner of the map, the "X"  goes from -1 to 1, but negative index aren't usable
+
+            if ( x < 0 ) x++;
+            else if ( x == x_coordinate ) x++;
+            
+            if ( map_ptr -> map[y][x] == 'M' )
+            {
+                if ( near_monters_head == NULL)
+                {
+                    near_monters_head = sll_initialize();
+                    monster = (MONSTER *) map_find_monster_by_coordinates(monsters_head,x,y);
+                    sll_insert_data(near_monters_head, monster);
+
+                    next_monster_node = sll_get_next_sll_ptr(near_monters_head);
+                }
+
+                else
+                {
+                    next_monster_node = sll_initialize();
+                    monster = (MONSTER *) map_find_monster_by_coordinates( monsters_head,x,y );
+                    sll_insert_data( near_monters_head, monster ); 
+
+                    next_monster_node = sll_get_next_sll_ptr(near_monters_head);
+                }
+            }
+        }
+    }
+
+    return near_monters_head;
+}
+
+MONSTER *
+map_find_monster_by_coordinates( SLL_STRUCT *monsters_head, int x_coordinate, int y_coordinate )
+{
+    MONSTER *monster = NULL;
+    int monster_x_position = 0;
+    int monster_y_position = 0;  
+
+    while ( monsters_head != NULL && monster != NULL )
+    {
+        if ( sll_get_data ( monsters_head ) != NULL)
+        {
+            monster = (MONSTER *) sll_get_data ( monsters_head );
+            monster_x_position = monster -> monster_map_position_struct_ptr -> x_position;
+            monster_y_position = monster -> monster_map_position_struct_ptr -> y_position;
+
+            if ( monster_x_position != x_coordinate || monster_y_position != y_coordinate ) monster = NULL;
+
+        }
+    }
+
+    return monster; 
+}
+
 
 
 /************************************
