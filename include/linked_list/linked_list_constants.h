@@ -1,0 +1,7 @@
+#ifndef _LINKED_LIST_CONSTANTS_HEADER_
+
+#define _LINKED_LIST_CONSTANTS_HEADER_
+
+#define EMPTY 0
+
+#endif
