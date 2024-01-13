@@ -16,7 +16,7 @@ main(/*int agrc, char *argv[]*/)
 
     MAP* map_struct_ptr = map_init();
 
-    map_struct_ptr -> map_level = 5; //TESTING IF MOBS WILL WORK
+    map_struct_ptr -> map_level = 3; //TESTING IF MOBS WILL WORK
 
     personagem_ptr -> character_map_position_struct_ptr -> x_position = MAP_SIZE/2;
     personagem_ptr -> character_map_position_struct_ptr -> y_position = MAP_SIZE/2;
@@ -30,13 +30,13 @@ main(/*int agrc, char *argv[]*/)
 
     map_print_map( map_struct_ptr );
 
-    int max_monsters_counter = 0;
-
     while (key != 'Q' && key != 'q')
     {
         key = map_map_menu( personagem_ptr,monster_holder_ptr,map_struct_ptr);
-        debug_map_status_checker( map_struct_ptr, monster_holder_ptr, personagem_ptr);
-        max_monsters_counter = debug_max_monster_around_char( map_struct_ptr, monster_holder_ptr, personagem_ptr, max_monsters_counter);
+        //debug_map_status_checker( map_struct_ptr, monster_holder_ptr, personagem_ptr);
+        //max_monsters_counter = debug_max_monster_around_char( map_struct_ptr, monster_holder_ptr, personagem_ptr, max_monsters_counter);
+        debug_monster_num_map ( map_struct_ptr );
+        debug_monster_num_sll_holder ( monster_holder_ptr );
     }
     
     character_free_all(personagem_ptr);

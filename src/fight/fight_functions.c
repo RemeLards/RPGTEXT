@@ -248,7 +248,7 @@ fight_character_killed_monsters(CHARACTER *character_struct_ptr, MONSTER *monste
     system("cls");
     printf("YOU KILLED THE MONSTER, GOOD JOB!!!!\n");
     printf("Press ENTER to continue!");
-    getchar();
+    //getchar();
         
     character_struct_ptr -> level_struct_ptr -> experience += monster_struct_ptr -> experience_given; //Giving EXP To Player
     printf("\n\nYOU GOT %.0f XP\n",monster_struct_ptr -> experience_given);  //Print XP That Player Got 
@@ -269,7 +269,8 @@ fight_attack_choise_menu(CHARACTER *character_struct_ptr)
     const char *options_names[] = {"Physical Attack","Ability Attack"};
     const int num_options = 2;
 
-    int option_chosen = menu_creation_menu_option_chosen(options_names, num_options,NULL);
+    //int option_chosen = menu_creation_menu_option_chosen(options_names, num_options,NULL);
+    int option_chosen = 0; //Debug Only
 
     if (option_chosen == 0) character_struct_ptr -> attack_type = PHYSICAL_ATTACK;
     if (option_chosen == 1) 
@@ -300,7 +301,7 @@ fight_fight_result(CHARACTER *character_struct_ptr,MONSTER *monster_struct_ptr)
         character_struct_ptr -> base_health -= fight_monsters_base_dmg_calculation(monster_struct_ptr); // Monster Attack 
         printf("\nYOUR Health: %.2f\n", character_struct_ptr -> base_health);
         printf("Press ENTER to continue\n\n");
-        getchar();
+        //getchar();
 
         if(character_struct_ptr -> base_health > ZERO_HEALTH_VALUE) return CHARACTER_IS_ALIVE; //Player isn't dead
 
@@ -335,7 +336,7 @@ fight_fight_menu(MAP *map_ptr,CHARACTER *character_struct_ptr, SLL_HOLDER *monst
     /*FIGHT IS OVER*/
 
     printf("\nPress ENTER to continue!\n");
-    getchar();
+    //getchar();
 
     if (fight_status == CHARACTER_IS_DEAD) fight_character_death(character_struct_ptr);
 
@@ -348,9 +349,9 @@ fight_fight_menu(MAP *map_ptr,CHARACTER *character_struct_ptr, SLL_HOLDER *monst
     //Freeing monsters malloced struct (we could generalize to a group of monters or in other words a vector of monsters)
     map_remove_entity_from_map(map_ptr, monster_struct_ptr -> monster_map_position_struct_ptr -> x_position,
                                         monster_struct_ptr -> monster_map_position_struct_ptr -> y_position);
-                          
-    monsters_holder_ptr -> head = sll_remove( monsters_holder_ptr -> head, (void *) monster_struct_ptr);
-    monsters_holder_ptr -> sll_size--;
+
+    sll_holder_remove_sll( monsters_holder_ptr, (void *) monster_struct_ptr );
+   
     //free(monster_struct_ptr);
 
     return fight_status; //A way of the main game know what happened in the fight

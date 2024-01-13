@@ -199,7 +199,7 @@ map_monster_spawn(SLL_HOLDER *monster_holder_ptr, MAP *map_ptr)
                 *(monster_y_position_ptr) = ( rng_generate_random_number() % MAP_SIZE );   
             }
             
-            monsters_malloc_next_monster_sll( monster_holder_ptr, monster_struct_ptr );
+            sll_holder_add_sll( monster_holder_ptr, monster_struct_ptr );
 
             map_add_entity_to_map(map_ptr,*(monster_x_position_ptr),*(monster_y_position_ptr), 'M');
         }
@@ -477,7 +477,8 @@ map_monster_chosen_to_fight( MAP *map_ptr, SLL_HOLDER *near_monster_holder)
     int monster_chosen = 0;
     int key = NULL_KEY;
     SLL *monster_head_copy = NULL;
-    
+
+    key = ENTER; //Just do debug;
     while(key != ENTER)
     {
         system_clear();
@@ -534,7 +535,8 @@ map_map_in_menu_option_chosen(const char **options_names, const int num_options,
 {
     int option_chosen = 0;
     int key = NULL_KEY;
-    
+
+    key = ENTER; //just to debug
     while(key != ENTER)
     {
         system_clear();

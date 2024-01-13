@@ -9,7 +9,8 @@ Explanation : Returns Single Linked List Data
 void*
 sll_get_data( SLL *sll )
 {
-    return sll -> data_ptr;
+    if ( sll != NULL ) return sll -> data_ptr;
+    return NULL;
 }
 
 /************************************
@@ -21,7 +22,8 @@ Explanation : Returns Single Linked List Next Single Linked List (AKA Next Node)
 SLL *
 sll_get_next( SLL *sll )
 {
-    return sll -> next;
+    if ( sll != NULL ) return sll -> next;
+    return NULL;
 }
 
 /************************************
@@ -62,12 +64,16 @@ Explanation : Inserts a Single Linked List (Node) on the Tail (Last Single Linke
 SLL *
 sll_add_new_tail( SLL *sll )
 {
-    SLL *sll_new_tail = sll_initialize();
+    SLL *sll_new_tail  = NULL;
 
-    SLL *sll_old_tail = sll_get_tail(sll);
+    if ( sll != NULL )
+    {
+        sll_new_tail = sll_initialize();
 
-    sll_old_tail -> next = sll_new_tail;
-        
+        SLL *sll_old_tail = sll_get_tail( sll );
+
+        if ( sll_old_tail != NULL ) sll_old_tail -> next = sll_new_tail;
+    }
 
     return sll_new_tail; 
 }
@@ -120,7 +126,7 @@ Explanation : Inserts any data type inside the Single Linked List data_ptr varia
 void 
 sll_insert_data( SLL *sll, void* data )
 {
-    sll -> data_ptr = data;
+    if(sll != NULL) sll -> data_ptr = data;
 }
 
 /************************************

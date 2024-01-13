@@ -540,7 +540,7 @@ character_level_calculation(CHARACTER *character_struct_ptr)
     character_exp_to_next_level_calculation(character_struct_ptr) - character_struct_ptr -> level_struct_ptr -> experience);
     
     printf("\nPress Enter To Continue\n");
-    getchar();
+    //getchar();
 }
                                
 /************************************

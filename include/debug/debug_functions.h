@@ -46,5 +46,11 @@ debug_monster_around_char(MONSTER *monster, int char_x, int char_y, int error_co
 int 
 debug_max_monster_around_char(MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter);
 
+void
+debug_monster_num_map( MAP *map_ptr);
+
+void
+debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder);
+
 
 #endif

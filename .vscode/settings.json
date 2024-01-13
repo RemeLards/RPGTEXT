@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "debug_functions.h": "c",
+        "map_constants.h": "c"
+    }
+}

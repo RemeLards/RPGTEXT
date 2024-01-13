@@ -31,7 +31,7 @@ monsters_goblin(int goblin_type)
         printf("Press ENTER to continue");
         getchar();*/
 
-        goblin_monster_ptr -> health = 30;
+        goblin_monster_ptr -> health = 5;
         goblin_monster_ptr -> defense = 1;
         goblin_monster_ptr -> physical_power = 0;
         goblin_monster_ptr -> ability_power = 1;
@@ -66,34 +66,7 @@ monsters_goblin(int goblin_type)
     return goblin_monster_ptr;
 }
 
-/************************************
-Function : monsters_malloc_next_monster_single_linked_list
-Date : 7/16/2023
-Usable? : Yes
-Explanation : Inserts a new memory allocated monster struct on the Monster Single Linked List Head, and the new Head points to the old SLL Head
-*************************************/   
 
-void
-monsters_malloc_next_monster_sll(SLL_HOLDER *monster_holder_ptr, MONSTER *monster_struct_ptr)
-{
-    if ( monster_holder_ptr -> head != NULL)
-    {
-        monster_holder_ptr -> tail = sll_add_new_tail(monster_holder_ptr -> tail);
-
-        sll_insert_data(monster_holder_ptr -> tail, (void *) monster_struct_ptr);
-
-        monster_holder_ptr -> sll_size++;
-    }
-
-    else 
-    {
-        monster_holder_ptr -> head = sll_initialize();
-        sll_insert_data(monster_holder_ptr -> head, (void *) monster_struct_ptr);
-        monster_holder_ptr -> tail = monster_holder_ptr -> head; // At the start head = tail
-        
-        monster_holder_ptr -> sll_size++;
-    }
-}
 
 
 

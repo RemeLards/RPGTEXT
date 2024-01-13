@@ -72,7 +72,7 @@ debug_print_entity_map_pos( MAP_POSITION *entity_map_pos)
 }
 
 int
-debug_random_character_movement_generator(void)
+debug_random_character_movement_generator( void )
 {
     int psudo_rng = rng_generate_random_positive_number();
     
@@ -82,7 +82,7 @@ debug_random_character_movement_generator(void)
 }
 
 void
-debug_print_movement_done(int key)
+debug_print_movement_done( int key)
 {
     if ( key == UP) printf ("\n MOVEMENT : UP \n");
     else if ( key == DOWN) printf ("\n MOVEMENT : DOWN \n");
@@ -93,7 +93,7 @@ debug_print_movement_done(int key)
 }
 
 int
-debug_all_monsters_around_char(CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder)
+debug_all_monsters_around_char( CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder)
 {
     SLL *monster_head_copy = near_monsters_holder -> head;
     MONSTER *monster = NULL;
@@ -113,7 +113,7 @@ debug_all_monsters_around_char(CHARACTER *character_struct_ptr, SLL_HOLDER *near
 }
 
 int
-debug_monster_around_char(MONSTER *monster, int char_x, int char_y, int error_counter)
+debug_monster_around_char( MONSTER *monster, int char_x, int char_y, int error_counter)
 {
     int monster_x =  monster -> monster_map_position_struct_ptr -> x_position;
     int monster_y =  monster -> monster_map_position_struct_ptr -> y_position;
@@ -131,7 +131,7 @@ debug_monster_around_char(MONSTER *monster, int char_x, int char_y, int error_co
 }
 
 int 
-debug_max_monster_around_char(MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter)
+debug_max_monster_around_char( MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter)
 {
     SLL_HOLDER *near_monsters_holder = map_find_monsters_around_character(map_ptr, monsters_holder, character_struct_ptr);
 
@@ -143,4 +143,33 @@ debug_max_monster_around_char(MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACT
 
     return max_monsters_counter;
 
+}
+
+void
+debug_monster_num_map( MAP *map_ptr)
+{
+    int monsters_quantity = 0;
+
+    for ( int i = 0; i < MAP_SIZE; i++ )
+    {
+        for( int j = 0; j < MAP_SIZE; j++ ) if ( map_ptr -> map[i][j] == 'M') monsters_quantity++;
+    }
+
+    printf("Monsters Quantity on MAP : %d\n\n",monsters_quantity);
+}
+
+void
+debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder)
+{
+    SLL *head_copy = monsters_holder -> head;
+    int monsters_quantity = 0;
+
+    while ( head_copy != NULL )
+    {
+        monsters_quantity++; 
+        head_copy = sll_get_next(head_copy);
+    }
+
+    printf("Monsters Quantity on Holder : %d\n\n", monsters_quantity);
+    printf("Monsters Quantity Holder knows of : %d\n\n", monsters_holder -> sll_size);  
 }

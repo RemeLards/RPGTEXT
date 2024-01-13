@@ -16,4 +16,7 @@ sll_holder_destroy( SLL_HOLDER *sll_holder );
 void
 sll_holder_remove_sll( SLL_HOLDER *sll_holder, void *data );
 
+void
+sll_holder_add_sll(SLL_HOLDER *sll_holder_ptr, void *data);
+
 #endif
