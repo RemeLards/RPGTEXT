@@ -32,25 +32,28 @@ void
 debug_print_entity_map_pos( MAP_POSITION *entity_map_pos );
 
 int
-debug_random_character_movement_generator(void);
+debug_random_character_movement_generator( void );
 
 void
-debug_print_movement_done(int key);
+debug_print_movement_done( int key );
 
 int
-debug_all_monsters_around_char(CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder);
+debug_all_monsters_around_char( CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder );
 
 int
-debug_monster_around_char(MONSTER *monster, int char_x, int char_y, int error_counter);
+debug_monster_around_char( MONSTER *monster, int char_x, int char_y, int error_counter );
 
 int 
-debug_max_monster_around_char(MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter);
+debug_max_monster_around_char( MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter );
 
 void
-debug_monster_num_map( MAP *map_ptr);
+debug_monster_num_map( MAP *map_ptr );
 
 void
-debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder);
+debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder );
+
+void
+debug_monster_sll_holder_equal_monster_map_num ( MAP *map_ptr, SLL_HOLDER *monsters_holder );
 
 
 #endif

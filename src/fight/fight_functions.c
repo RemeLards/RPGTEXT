@@ -270,6 +270,7 @@ fight_attack_choise_menu(CHARACTER *character_struct_ptr)
     const int num_options = 2;
 
     //int option_chosen = menu_creation_menu_option_chosen(options_names, num_options,NULL);
+    
     int option_chosen = 0; //Debug Only
 
     if (option_chosen == 0) character_struct_ptr -> attack_type = PHYSICAL_ATTACK;

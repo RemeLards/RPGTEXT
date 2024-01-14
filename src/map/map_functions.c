@@ -184,26 +184,28 @@ map_monster_spawn(SLL_HOLDER *monster_holder_ptr, MAP *map_ptr)
 {
     if ( (rng_generate_random_positive_number() % 101) > 90)
     {
-        if ( ( monster_holder_ptr -> sll_size ) < ( map_ptr -> map_level ) )
+        if ( ( monster_holder_ptr -> sll_size ) != ( map_ptr -> map_level ) )
         {
             MONSTER *monster_struct_ptr = monsters_goblin(NORMAL_GOBLIN); //RANDOMIZE MOBS DEPENDING MAP OF THE LEVEL
-            monster_struct_ptr -> monster_map_position_struct_ptr -> x_position = ( rng_generate_random_number() % MAP_SIZE );
-            monster_struct_ptr -> monster_map_position_struct_ptr -> y_position = ( rng_generate_random_number() % MAP_SIZE );
+            monster_struct_ptr -> monster_map_position_struct_ptr -> x_position = ( rng_generate_random_positive_number() % MAP_SIZE );
+            monster_struct_ptr -> monster_map_position_struct_ptr -> y_position = ( rng_generate_random_positive_number() % MAP_SIZE );
 
             int *monster_x_position_ptr = &( monster_struct_ptr -> monster_map_position_struct_ptr -> x_position );
             int *monster_y_position_ptr = &( monster_struct_ptr -> monster_map_position_struct_ptr -> y_position ); 
 
             while ( map_collision_validation( map_ptr, *(monster_x_position_ptr), *(monster_y_position_ptr) ) == COLLISION )
             {
-                *(monster_x_position_ptr) = ( rng_generate_random_number() % MAP_SIZE );
-                *(monster_y_position_ptr) = ( rng_generate_random_number() % MAP_SIZE );   
+                *(monster_x_position_ptr) = ( rng_generate_random_positive_number() % MAP_SIZE );
+                *(monster_y_position_ptr) = ( rng_generate_random_positive_number() % MAP_SIZE );   
             }
             
             sll_holder_add_sll( monster_holder_ptr, monster_struct_ptr );
 
-            map_add_entity_to_map(map_ptr,*(monster_x_position_ptr),*(monster_y_position_ptr), 'M');
+            map_add_entity_to_map( map_ptr,*(monster_x_position_ptr),*(monster_y_position_ptr), 'M');
         }
     }
+
+    debug_monster_sll_holder_equal_monster_map_num( map_ptr, monster_holder_ptr );
 }
 
 

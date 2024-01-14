@@ -64,7 +64,7 @@ debug_print_character_map_pos( CHARACTER *character_ptr )
 }
 
 void 
-debug_print_entity_map_pos( MAP_POSITION *entity_map_pos)
+debug_print_entity_map_pos( MAP_POSITION *entity_map_pos )
 {
     printf("\n x position = %d \n", entity_map_pos -> x_position);
     printf("\n y position  = %d \n", entity_map_pos -> y_position);
@@ -82,7 +82,7 @@ debug_random_character_movement_generator( void )
 }
 
 void
-debug_print_movement_done( int key)
+debug_print_movement_done( int key )
 {
     if ( key == UP) printf ("\n MOVEMENT : UP \n");
     else if ( key == DOWN) printf ("\n MOVEMENT : DOWN \n");
@@ -93,7 +93,7 @@ debug_print_movement_done( int key)
 }
 
 int
-debug_all_monsters_around_char( CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder)
+debug_all_monsters_around_char( CHARACTER *character_struct_ptr, SLL_HOLDER *near_monsters_holder )
 {
     SLL *monster_head_copy = near_monsters_holder -> head;
     MONSTER *monster = NULL;
@@ -113,7 +113,7 @@ debug_all_monsters_around_char( CHARACTER *character_struct_ptr, SLL_HOLDER *nea
 }
 
 int
-debug_monster_around_char( MONSTER *monster, int char_x, int char_y, int error_counter)
+debug_monster_around_char( MONSTER *monster, int char_x, int char_y, int error_counter )
 {
     int monster_x =  monster -> monster_map_position_struct_ptr -> x_position;
     int monster_y =  monster -> monster_map_position_struct_ptr -> y_position;
@@ -131,7 +131,7 @@ debug_monster_around_char( MONSTER *monster, int char_x, int char_y, int error_c
 }
 
 int 
-debug_max_monster_around_char( MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter)
+debug_max_monster_around_char( MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARACTER *character_struct_ptr, int max_monsters_counter )
 {
     SLL_HOLDER *near_monsters_holder = map_find_monsters_around_character(map_ptr, monsters_holder, character_struct_ptr);
 
@@ -146,7 +146,7 @@ debug_max_monster_around_char( MAP *map_ptr, SLL_HOLDER *monsters_holder, CHARAC
 }
 
 void
-debug_monster_num_map( MAP *map_ptr)
+debug_monster_num_map( MAP *map_ptr )
 {
     int monsters_quantity = 0;
 
@@ -159,7 +159,7 @@ debug_monster_num_map( MAP *map_ptr)
 }
 
 void
-debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder)
+debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder )
 {
     SLL *head_copy = monsters_holder -> head;
     int monsters_quantity = 0;
@@ -172,4 +172,27 @@ debug_monster_num_sll_holder( SLL_HOLDER *monsters_holder)
 
     printf("Monsters Quantity on Holder : %d\n\n", monsters_quantity);
     printf("Monsters Quantity Holder knows of : %d\n\n", monsters_holder -> sll_size);  
+}
+
+void
+debug_monster_sll_holder_equal_monster_map_num ( MAP *map_ptr, SLL_HOLDER *monsters_holder )
+{  
+    int monster_quantity = 0;
+
+    for ( int y = 0; y < MAP_SIZE; y++ )
+    {
+        for ( int x = 0; x < MAP_SIZE; x++)
+        {
+            if ( map_ptr -> map[y][x] == 'M') monster_quantity++;
+        }
+    }  
+
+    if (  ( monsters_holder -> sll_size ) != monster_quantity )
+    {
+        printf("DEU MERDA PATRAO !!!!!!!!!!\n\n\n");
+        debug_print_monsters_map_pos( monsters_holder );
+        debug_monster_num_map( map_ptr );
+        debug_monster_num_sll_holder ( monsters_holder ); 
+        getch();
+    }
 }
